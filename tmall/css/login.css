@@ -1,0 +1,16 @@
+/****绑定登录**
+/*body,html{background:#a71b1f;}
+.wrap{ width:100%; padding-bottom:156.25%; background:url(../images/bg.jpg) no-repeat; background-size:cover; position:relative;}
+.head{ width:93.75%; height:9em; background:rgba(0,0,0,0.3); padding:3em 0 0 6.25%;color:#FFF; position:absolute; top:0;}
+.head .big_text{ font-size:3.6em; }
+.head .small_text{ font-size:2.2em;}
+.img{ width:65.15%; height:auto; position:absolute; top:23.1%; left:17.65%;}
+.form{ width:71%; height:15.4em; border-radius:0.4em; background:#f3a187; box-shadow: 0 0 1em rgba(0,0,0,0.5); overflow:hidden; position:absolute; left:14.5%; top:37.5%;}
+.text{ width:95.2%; height:3em; padding:2.3em 0 2.3em 4.8%; font-size:3em; color:#686868; background:#f3a187; border-bottom:0.2em solid #696969; border-radius:0.4em 0.4em 0 0 ; line-height:3em; display:block;}
+.password{width:95.2%; height:3em; padding:2.3em 0 2.3em 4.8%; font-size:3em; color:#686868; background:#f3a187; border-radius:0 0 0.4em 0.4em; line-height:3em; display:block;}
+.btn{ width:28.4%; height:8em; line-height:8em; background:-webkit-linear-gradient(#c80004 0,#880000 100%); text-align:center; color:#FFF; font-size:3em; left:35.8%; position:absolute; top:60.6%; border:0.4em solid #f7bf8c; border-radius:1.5em;}
+/***绑定登录成功**
+.wrap_succ{ width:100%; padding-bottom:156.25%; background:url(../images/bg.jpg) no-repeat; background-size:cover; position:relative; display:none;/*刚开始绑定成功页面暂时隐藏}
+.bd_name{ width:100%;font-size:3em; text-align:center; height:6em; line-height:6em; position:absolute; top:37%;}
+.btn_succ{ width:28.4%; height:8em; line-height:8em; background:-webkit-linear-gradient(#c80004 0,#880000 100%); text-align:center; color:#FFF; font-size:3em; left:35.8%; position:absolute; top:43.5%; border:0.4em solid #f7bf8c; border-radius:1.5em;}
+*/

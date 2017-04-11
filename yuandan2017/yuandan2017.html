@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>元旦快乐</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script type="text/javascript" src="js/size.js"></script>
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/yuandan2017.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/yuandan2017.js"></script>
+</head>
+<body>
+<div id="content" class="one">
+	<div class="topBg pa t0">
+    	<img src="images/bg.png" alt="元旦活动顶背景图" class="img">
+    </div>
+	<div class="topDiv pa t0">
+        <img src="images/top.png" alt="元旦活动顶图" class="img">
+    </div>
+    <div class="chooseWrap pa" >
+    	<input type="text" class="chooseName" placeholder="请输入姓名"  maxlength="20">
+        <input type="button" value=" " class="chooseCon">
+    </div>
+	<div class="tongDiv pa">
+    	<img src="images/tong.png" class="img bell" alt="抽签桶">
+    </div>
+    <div class="replayWrap pa">
+    	<img src="images/replay.png" alt="重玩一次" class="img">
+    </div>
+    <div class="qwjdWrap pa">
+    	<img src="images/qwjd.png" alt="签文解读" class="img">
+    </div>
+    <div class="qWrap pa">
+    	<img src="" alt="签文" class="img">
+    </div>
+    <div class="hbWrap pa">
+    	<img src="images/hb.png" alt="红包" class="img hbpic">
+    </div>
+    <div class="clickWrap pa">
+    	<img src="images/click.png" alt="点我" class="img hbpic">
+    </div>
+    <div class="thtext pa">
+        特别鸣谢<span style="font-size:0.5rem;">&nbsp;请下载支持一下！^-^</span>
+    </div>
+    <div class="thIconWrap pa">
+        <a href="javascript:;" class="apk tc" style="width:3.8rem;">
+            <img src="images/z1.png" alt="捕鱼达人千炮版" class="img" data-href="http://gamedl.gionee.com/Attachments/dev/apks/2016/12/12/1481524344672.apk" data-id="1">
+            <span>捕鱼达人千炮版</span>
+        </a>
+        <a href="javascript:;"  class="apk tc">
+            <img src="images/z2.png" alt="大圣之怒" class="img" data-href="http://gamedl.gionee.com/Attachments/dev/apks/2016/11/30/1480509029571_signed.apk" data-id="2">
+            <span>大圣之怒</span>
+        </a>
+        <a href="javascript:;" class="apk tc">
+            <img src="images/z3.png" alt="天天斗地主"  class="img" data-href="http://gamedl.gionee.com/Attachments/dev/apks/2016/12/09/1481256454458.apk" data-id="3">
+            <span>天天斗地主</span>
+        </a> 
+        <a href="javascript:;"  class="apk tc">
+            <img src="images/z4.png" alt="无尽争霸" class="img" data-href="http://gamedl.gionee.com/Attachments/dev/apks/2016/12/03/1480747137984_signed.apk" data-id="4">
+            <span>无尽争霸</span>
+        </a>   
+        <a href="javascript:;"  class="apk tc">
+            <img src="images/z5.png" alt="永恒纪元:戒" class="img" data-href="http://gamedl.gionee.com/Attachments/dev/apks/2016/11/29/1480389301550_signed.apk" data-id="5">
+            <span>永恒纪元:戒</span>
+        </a>             
+    </div>
+    <div class="footBg pa">
+    	<img src="images/bg.png" alt="元旦活动底背景图" class="img">
+    </div>
+</div>
+
+<!--50元充值卡一个-->
+<div class="chongzhi prizeWrap pa l0 t0" style="display:none;">
+    <img src="" alt="奖品" class="img prize">
+    <div class="hongbaoForm">
+        <input type="tel" class="phoneNum" placeholder="请输入手机号码" onKeyUp="value=value.replace(/\D/g,'')" maxlength="11">
+        <input type="button" value="确定" class="phoneCon">
+    </div>
+    <div class="hasHongbao" style="display:none;">
+    	中奖号码为&nbsp;<span class="hasNum"></span>
+    </div>
+    <span class="inaddress tc">请确认您的手机号准确无误，一旦确认，无法修改！</span>
+   <!-- <span class="inaddress tc">10月8日之后我们会与您联络哦~</span>-->
+    <span class="inaddress tc" style=" position:relative; top:-0.4em;">欢迎联系我们的QQ群：142876462</span>
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button">     
+</div>
+
+<!--点击出现弹窗-->
+<div id="divWrap">
+	<div id="popDiv" class="pf t0">
+    	<!--月饼券-->
+        <div class="yuebing prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button"  style="margin-top:0em;">
+        	<span class="textWrap pa">
+            	<span class="text1 dotted tl db"><a href="http://activity.mafengwo.cn/coupon.php?iId=4599" target="_self">点击领取</a></span>
+                <span class="text2 dotted tl db">欢迎联系我们的QQ群：142876462</span>
+            </span>
+           <!--<span class="copyWrap" id="copy" data-clipboard-text="">
+            	点此复制
+            </span>-->
+        	<p>使用规则：</p>
+            <p>1. 优惠金额、适用范围及使用期限以优惠券上显示为准</p>
+            <p>2. 仅限在蚂蜂窝自由行APP商城频道购买产品可用（除旅游保险及蜂抢产品外）</p>
+            <p>3. 每张优惠券限用一次，每个订单限用一张。</p>
+            <p>4. 优惠券不能兑换成现金</p>
+            <p>5. 本活动解释权归蚂蜂窝所有</p>
+        </div>
+        <!--实物奖品-->
+        <div class="jdk prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，稍后会以邮寄的方式发送到您的手中~</span>
+            <span class="inaddress tc" style=" position:relative; top:-1.4em;">欢迎联系我们的QQ群：142876462</span>
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button" style="margin-top:0.2rem;">     
+        </div>
+        <!--收货地址-->
+        <div class="shaddress prizeWrap inAddressWrap" style="display:none;">
+            <div class="tianxie">填写收货地址</div>
+            <form>
+                <div class="form-control">
+                    <label>收货人</label>
+                    <input type="text" name="" id="" maxlength="20" class="inText formPerson" placeholder="请输入收货人">
+                </div>
+                <div class="form-control">
+                    <label>联系方式</label>
+                    <input type="tel" name="" id="" maxlength="11" class="inText formNum" onKeyUp="value=value.replace(/\D/g,'')" placeholder="请输入联系方式">
+                </div>
+                <div class="form-control">
+                    <label>详细地址</label>
+                    <input type="text" name="" id="" maxlength="100" class="inText formAddress" placeholder="请输入详细地址">
+                </div>
+                <input type="button" value="确定" class="addressCon">
+            </form>    
+            <img src="images/close-button.png" alt="关闭按钮" class="close-button">  
+        </div>
+        <!--收货信息-->
+        <div class="addressInfo prizeWrap shaddress shouhuoWrap" style="display:none;">
+            <div class="shouhuo">收货信息</div>
+            <img src="" alt="奖品" class="img prizeImg">
+            <div class="namePhone">
+                <span class="nameInfo"></span>&nbsp; 
+                <span class="phoneInfo"></span>
+            </div>
+            <div class="otherInfo">
+                <span class="addrInfo"></span>
+            </div>
+            <input type="button" value="修改收货信息" class="xiugai">
+            <img src="images/close-button.png" alt="关闭按钮" class="close-button">            
+            <p>活动规则</p>
+            <p>1、中国大陆地区（除去港澳台、西藏、新疆等快递邮寄不到的偏远地址）均可参加此活动；</p>
+            <p>2、此活动真实有效，并且不收取任何快递等费用； </p>
+            <p>3、最终解释权归金立锁屏所有！</p>     
+        </div>
+    </div>
+</div>
+<div class="load"><img src="images/loading.gif" alt="" class="load-img"></div>
+<div id="tipsWrap">
+	<div class="success pf l0 t0"><img src="" alt="很遗憾，没中奖" class="img"></div>
+</div>
+<div id="mask" class="pf l0 t0" style="display:none"></div>
+</body>
+</html>

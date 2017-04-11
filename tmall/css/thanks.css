@@ -1,0 +1,7 @@
+.wrap_thanks{ width:100%; padding-bottom:177.5%; background:url(../images/thanks.jpg) no-repeat; background-size:cover; position:relative;}
+.thanks_text{ width:29%; left:35.5%; position:absolute; top:9.3309%;}
+.sel_text{ width:56.8%; color:#FFF; letter-spacing:0.3rem; font-size:2.4rem; position:absolute; left:21.6%; top:24.1197%; z-index:5; text-align:center;}
+.sel{ width:40%; position:absolute; left:30%; top:28%; height:4rem; background:#FF0;/*黄色背景*/}
+.reason{ width:50%; overflow:hidden; position:absolute; left:25%; top:33%;}
+.reason .reason_text{ -webkit-appearance:none;float:left; background:none; border-bottom:0.2rem solid #FFF; width:100%; font-size:2.4rem; text-indent:0.5rem;border-radius:0px; outline:none; float:left;}
+.submit{ width:20%; display:block; height:6rem; line-height:6rem; color:#FFF; text-align:center;background:-webkit-linear-gradient(#c80004 0,#880000 100%);border:0.4rem solid #f7bf8c; border-radius:1rem; font-size:3.6rem; -webkit-appearance:none; letter-spacing:0.5rem; position:absolute; left:40%; top:37%;}

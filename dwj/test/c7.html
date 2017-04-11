@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{ background:#000;}
+#c1{ background:#fff;}
+#img1{ background:#fff;}
+</style>
+<script>
+window.onload = function(){
+	var oC = document.getElementById('c1');
+	var oImg = document.getElementById('img1');
+	var oGC = oC.getContext('2d'); 
+	
+	/*
+	 *.globalAlpha = '0.5'; 全局阿尔法值---透明度
+	 *============覆盖合成==========
+	 *源：新的图形 source
+	 *目标：已经绘制过的图形 destination
+	 *globalCompositeOperation
+	 *>>source-over 源在上面，后加的在上面，即后绘制的覆盖之前绘制的(默认)
+	 *>>destination-over 目标在上面，之前绘制的在上面，即之前绘制的覆盖后面绘制的
+	 *>>source-atop  源显示，显示目标与目标与源重叠的部分
+	 *>>destination-atop  目标消失，显示源与目标与源重叠部分
+	 *>>source-in  目标和源都显示，显示重叠源的部分
+	 *>>destination-in 目标和源都消失，显示重叠目标的部分
+	 *>>source-out  目标消失，源减去重叠的部分
+	 *>>destination-out  源消失，目标减去重叠的部分
+	 *>>lighter  ??
+	 *>>copy 目标消失，即重叠时之前绘制过的消失
+	 *>>xor  合成的部分被掏空，刮刮乐效果
+	 *oC.toDataURL() -->将canvas导出成base64格式的png图片  (右键也可以保存)
+	 *
+	*/
+	oGC.fillRect(0,0,100,100);
+	oGC.fillStyle = 'red';
+	//oGC.globalAlpha = '0.5';
+	oGC.globalCompositeOperation = 'xor';
+	oGC.fillRect(50,50,100,100);
+	//alert(oC.toDataURL());
+	oImg.src = oC.toDataURL();
+};
+</script>
+</head>
+<body>
+<!--canvas默认宽300，高150-->
+<canvas id="c1" width="400" height="400">您的浏览器不支持canvas！</canvas>
+<img src="" alt="" id="img1">
+</body>
+</html>

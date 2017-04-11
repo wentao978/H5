@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="css.css">
+
+    <!-- Demo styles -->
+    <style>
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding:0 0 0 20px;
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		-ms-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+		
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		-ms-backface-visibility: hidden;
+		backface-visibility: hidden;
+		
+		-webkit-perspective: 1000;
+		-moz-perspective: 1000;
+		-ms-perspective: 1000;
+		perspective: 1000;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 300px;
+        margin: 20px auto;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display:inline-block;
+		line-height:300px;
+        /* Center slide text vertically */
+       /* display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;*/
+    }
+	.swiper-slide img{
+		width:100%;
+		height:100%;
+		display:block;		
+	}
+	.swiper-wrapper{
+		/*padding:10px 0px 10px 40px;*/
+		height:90%;		
+	}
+	.swiper-container-horizontal > .swiper-pagination {
+	  bottom: 0px;
+	  left: 0;
+	  width: 100%;
+	}
+	img{ display:none;}
+	.swiper-wrapper .swiper-slide img{ display:block}
+    </style>
+</head>
+<body>
+<p><img src="11.jpg" alt=""></p>
+<p><img src="22.jpg" alt=""></p>
+<p><img src="11.jpg" alt=""></p>
+<p><img src="22.jpg" alt=""></p>
+<p><img src="11.jpg" alt=""></p>
+<p><img src="22.jpg" alt=""></p>
+<p><img src="11.jpg" alt=""></p>
+<p><img src="22.jpg" alt=""></p>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="11.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="22.jpg" alt=""></div>
+           	<div class="swiper-slide"><img src="11.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="22.jpg" alt=""></div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="js.js"></script>
+	<script src="jquery.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+	
+	//alert($('img').length);
+	//console.log($('img')[0].outerHTML);
+	console.log($('img')[0]);
+	var $len = $('img').length;
+	var html = '';
+	for(var i=0; i<$len; i++){
+		html += '<div class="swiper-slide"><img src="'+$('img')[i].src+'" alt=""></div>';
+	}
+	//$('.swiper-wrapper').html(html);
+	
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 3,
+        paginationClickable: true,
+        spaceBetween: 30,
+        freeMode: true
+    });
+	
+	//数量小于3的时候居中显示	
+	if($('.swiper-slide').length < 3){
+		$('.swiper-slide').each(function(index, element) {
+            $(this).css('margin','0 auto')
+        });
+	}
+	
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+body{ background:#f5f5f5;}
+#content{ width:1002px; height:852px; margin:0 auto;}
+.head{ width:1002px; height:338px; background:url(../images/head.png) no-repeat;}
+.phone{ width:178px; height:356px; background:url(../images/phone.png) no-repeat; left:180px; top:78px;}
+.key{ width:87px; height:87px; background:url(../images/key.png) no-repeat; left:408px; top:90px;}
+.gushi{ width:157px; height:58px; background:url(../images/gushi.png) no-repeat; left:496px; top:98px;}
+.text{ font-size:12px; font-family:"Microsoft Yahei"; width:410px; left:430px; top:180px;}
+.text p{ line-height:20px;}
+.button{ font-size:22px; font-family:"Microsoft Yahei"; color:#fff; background:#282828; width:145px; height:44px; line-height:44px; left:432px; top:340px; text-decoration:none; border-radius:5px; cursor:pointer; box-shadow:0px 5px 10px #aaa;}
+.button:active{ color:#f6f6f6; background:#000;}
+.pic{ width:812px; height:357px; background:url(../images/pic.png) no-repeat; bottom:40px; margin-left:95px; z-index:5;}
+.foot{ width:1002px; height:145px; background:url(../images/foot.jpg) no-repeat;}
+
+
+
+
+
+
+

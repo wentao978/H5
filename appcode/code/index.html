@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>砸金蛋</title>
+<link href="./css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script src="./js/easydialog.min.js"></script>
+<script src="./js/extend.js"></script>
+<script src="http://huodong.opencom.cn/jscomm/tinybox.js"></script>
+<script type="text/javascript">
+function getQueryString(queryStringName){var returnValue="";var URLString=new String(document.location);var serachLocation=-1;var queryStringLength=queryStringName.length;do{serachLocation=URLString.indexOf(queryStringName+"=");if(serachLocation!=-1){if((URLString.charAt(serachLocation-1)=="?")||(URLString.charAt(serachLocation-1)=="&")){URLString=URLString.substr(serachLocation);break}URLString=URLString.substr(serachLocation+queryStringLength+1)}}while(serachLocation!=-1);if(serachLocation!=-1){var seperatorLocation=URLString.indexOf("&");if(seperatorLocation==-1){returnValue=URLString.substr(queryStringLength+1)}else{returnValue=URLString.substring(queryStringLength+1,seperatorLocation)}}returnValue=returnValue.replace(/#/g,"");return returnValue};
+</script>
+<style type="text/css">
+.zxx_list_title{background:#eeeeee; border:1px solid #cccccc; padding:1em;}
+.zxx_list_content{padding:1em;}
+#tinybox{position:absolute; display:none; padding:10px; background:#ffffff url(../image/preload.gif) no-repeat 50% 50%; border:5px solid #e3e3e3; z-index:2000;}
+#tinymask{position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000000; z-index:1500;}
+#tinycontent{background:#ffffff; font-size:1.1em;}
+</style>
+<section class="Title">欢乐砸金蛋</section>
+<section id="main">
+	<div class="egg">
+		<div class="Opportunity">你还有<strong><font id="chance">1</font></strong>次机会</div>
+		<div class="eggList">
+			<p style="left: 234px;" class="hammer" id="hammer">锤子</p>
+			<div class="resultTip" id="resultTip"><b id="result"></b></div>
+			<div class="eggbtn"><span></span></div>
+		</div>
+	</div>
+	<div class="bg"></div>
+</section>
+<section class="InfoBox">
+	<div class="winners_user">
+		<div class="ico"></div>
+		<div id="winners_user">
+			<div id="winners_info">
+				<ul id="init_data">
+
+                <li>哈哈**获得<span>iphone6 一部</span>2015-02-07 12:00:00</li>
+                 <li>的发**获得<span>iphone6 一部</span>2015-02-07 12:00:00</li>
+                  <li>试试**获得<span>美女一枚</span>2015-02-07 12:00:00</li>
+                   <li>搜索**获得<span>iphone6 一部</span>2015-02-07 12:00:00</li>
+                    <li>哈哈**获得<span>iphone6 一部</span>2015-02-07 12:00:00</li>
+
+                </ul>
+			</div>
+		</div>
+	</div>
+	<div class="relevant-list">
+		<div class="award_list_ico">
+			<a href="javascript:;" onClick="showaward();" >
+				<span></span>
+				<strong>奖品列表</strong>
+			</a>
+		</div>
+		<div class="my_list_ico">
+			<a href="javascript:;" onClick="showmyprize();" >
+				<span></span>
+				<strong>我的奖品</strong>
+			</a>
+		</div>
+		<div class="rule_ico">
+			<a id="rule_btn" href="#">
+				<span></span>
+				<strong>规则说明</strong>
+			</a>
+		</div>			
+	</div>
+	
+	<div id="rule_box" style="display:none;" class="prompt_box">
+		<div class="column"><span class="close" onClick="easyDialog.close();">X</span><h3>规则说明</h3></div>
+		<div class="prompt_info" style="height:200px; overflow-y:scroll;" id="huodong_desc_div">
+			
+		</div>
+	</div>
+</section>
+
+<script type="text/javascript" src="js/extend.js"></script>
+<script type="text/javascript">
+
+$(".eggbtn").click(function() {
+	eggClick($(this));
+		
+});
+
+			
+function eggClick(obj) {
+	var _this = $(".eggbtn");
+	if(_this.hasClass("curr")){
+		if(confirm("蛋都碎了，别砸了！刷新再来.")){
+			window.location=window.location;	
+		}
+		return;
+	}
+	$.getJSON('prize.php?act=prize&callback=?',function(json){
+		
+		$(".hammer").css({"top":_this.position().top-55,"left":_this.position().left+185});
+		$(".hammer").animate({
+			"top":_this.position().top-25,
+			"left":_this.position().left+125
+			},30,function(){
+				_this.addClass("curr"); //蛋碎效果
+				//_this.find("sup").show(); //金花四溅
+				$(".hammer").hide();
+				$("#result").empty();
+				$('.resultTip').css({display:'block',top:'50px',left:_this.position().left+80,opacity:0}).animate({top: '10px',opacity:1},300,function(){
+					if(typeof(json)=='object'){
+						if(json[0].award_type=='200'){
+							$("#result").html("谢谢参与!");
+						}else{
+							$("#result").html("恭喜，您中得"+json[0].award_name+"!");
+						}
+						
+						var chance = parseInt($('#chance').html());
+						chance = chance - 1;
+						if(chance<0){
+							chance = 0;
+						} 
+						$('#chance').html(chance);
+					}else{
+						if(json=='nothuodong'){		
+							$("#result").html("没有这个活动!");
+						}else if(json=='notstart'){
+							$("#result").html("活动还未开始喔!");
+							
+						}else if(json=='is_end'){	
+							$("#result").html("活动已经结束!");		
+							
+						}else if(json=='nocheck'){
+							$("#result").html("未登陆!");		
+							
+						}else if(json=='nochance'){
+							$("#result").html("没抽奖机会!");	
+							
+						}else{
+							$("#result").html("未登陆或网络错误!");	
+							
+						}
+					}
+					
+				});	
+			}
+		);
+	});
+	
+}
+
+
+
+
+
+
+//把时间戳转成日期格式
+function getTimeFormat ( s ){
+	 var data = new Date(parseInt(s*1000)); // s 单位：秒
+	 var h=data.getHours();
+	 if(h<10){
+		 h='0'+h;
+	 }
+	 var m=data.getMinutes();
+	 if(m<10){
+		  m='0'+m;
+	 }
+	 var s=data.getSeconds();
+	 if(s<10){
+		  s='0'+s;
+	 }
+	 return data.getFullYear()+'-'+(data.getMonth()+1)+"-"+data.getDate()+" "+h+":"+m+":"+s;
+}
+</script>
+
+
+</body></html>

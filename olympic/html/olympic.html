@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>猜金牌-赢大奖</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script type="text/javascript" src="../js/size.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/olympic.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/olympic.js"></script>
+<script type="text/javascript" src="../js/clipboard.min.js"></script>
+
+</head>
+<body>
+<!--<div id="loading">
+	<div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+    </div>
+    <div class="loadingText" id="loadingText">猜金牌-赢大奖加载中···</div>
+</div>-->
+<div class="baseDiv pr">
+	<img src="http://nav.gionee.com/htm/olympic/images/bg.jpg" alt="背景图" class="img">
+</div>
+<div class="topWrap pa">
+	<div class="inWrap pa l0 t0" style="display:none;">
+    	<div class="tpText pr">
+        	我猜到8月<span class="day"></span>日12:00前<span class="gray">(此项活动可每天参与哦)</span>
+        </div>
+        <div class="tpInput pr">
+        	中国队将累计获得: <input type="tel" class="inPrize" id="input1" data-value=""> 枚
+        </div>
+    </div>
+    <div class="tip1 pa" style="display:none;"></div>
+    <div class="hasWrap pa l0 t0" style="display:none;">
+    	<div class="tpSuccess pr">
+        	提交成功！
+        </div>
+        <div class="tpInfo pr tc">
+        	您预测8月<span class="day"></span>日结束后中国将累计获得：<span class="prize">32</span>枚金牌
+        </div>
+    </div>
+</div>
+<div class="totalWrap pa">
+	<div class="totalTextWrap pr">
+    	我猜本届奥运会中国<span class="zong">总</span>金牌数<span class="gray">(此选项填写时截止到8月12日，8月12日之后已填写的不可修改)</span>
+    </div>
+    <div class="totalInput pr">
+        <span style="opacity:0;">中国队将累计获得:</span> <input type="tel" class="inTotal" id="input2" data-value=""> 枚
+    </div>
+    <div class="tip2 pa" style="display:none;"></div>
+    <div class="tip3 pa" style="display:none;"></div>
+    <div class="telWrap pr">
+    	<span class="red fl">*</span>
+        <span class="fl phoneWrap dib">
+        	<span class="fl p86">+86</span>
+            <span class="fl pInput">
+            	<input type="tel" class="phoneInput" placeholder="请输入您的手机号" id="input3">
+            </span>
+        </span>
+    </div>
+    <div class="submit disabled pr" id="submit">
+    	提交
+    </div>
+</div>
+<div class="thanksWrap pa">
+	<div class="thanksText">
+    	特别鸣谢
+    </div>
+    <div class="logoWrap">
+    	<ul>
+    		<li><a href="http://game.gionee.com/Front/Game/detail/?from=gn&id=4534"><img src="../images/h1.png" alt="梦幻西游"></a></li>
+            <li><a href="http://m.appgionee.com/mobile/soft/detail?id=11566&fr=gn_lock_h5"><img src="../images/h2.png" alt="百度糯米"></a></li>
+            <li><a href="http://game.gionee.com/Front/Game/detail/?from=gn&id=7445"><img src="../images/h3.png" alt="少年西游记"></a></li>
+            <li><a href="http://m.appgionee.com/mobile/soft/detail?id=140354&fr=gn_lock_h5"><img src="../images/h4.png" alt="天天快报"></a></li>
+            <li><a href="http://game.gionee.com/Front/Game/detail/?from=gn&id=7675"><img src="../images/h5.png" alt="永恒纪元"></a></li>
+    	</ul>
+    </div>
+    <div class="tip4 pa dChat" style="display:block;">
+    	温馨提示：点击进入体验更多乐趣哦！
+    </div>
+</div>
+<div class="nameWrap pa">
+	<div class="nameTextWrap pa l0 t0 tc">
+    	中奖名单
+    </div>
+    <div class="zhongjiang pa">
+    	<a href="javascript:;">中奖记录</a>
+    </div>
+    <div class="zjjl pa" style="display:none;">
+    	<div class="zClose pa">X</div>
+        <div class="zjt pa">中奖记录</div>
+    	<div class="noPrize tc" style="display:none;">
+        	您暂时还没有中奖，继续加油哦！
+        </div>
+        <div class="prizeList" style="display:none;">
+            <div class="oplist"><span class="pdate dib">8月7日</span><span class="pname">获得100元流量包</span><span class="use fr">使用说明</span></div>
+            <ul class="useinfo">
+            	<li>兑换码：XXXXXXXXXXXX</li>
+            	<li>1.111</li>
+                <li>2.222</li>
+                <li class="tr"><a href="http://m.appgionee.com/mobile/soft/detail?vid=355&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=137270&cpv=3.0.4">立即下载</a></li>
+            </ul>	
+            <div class="oplist"><span class="pdate dib">8月8日</span><span class="pname">获得50元充值卡</span><span class="use fr">使用说明</span></div>
+            <ul class="useinfo">
+            	<li>兑换码：XXXXXXXXXXXX</li>
+            	<li>111</li>
+                <li>222</li>
+                <li class="tr"><a href="http://m.appgionee.com/mobile/soft/detail?vid=355&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=137270&cpv=3.0.4">立即下载</a></li>
+            </ul>
+            <div class="oplist"><span class="pdate dib">8月10日</span><span class="pname">获得100元代金券</span><span class="use fr">使用说明</span></div>
+            <ul class="useinfo">
+            	<li>兑换码：XXXXXXXXXXXX</li>
+            	<li>111</li>
+                <li>222</li>
+                <li class="tr"><a href="http://m.appgionee.com/mobile/soft/detail?vid=355&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=137270&cpv=3.0.4">立即下载</a></li>
+            </ul>
+            <div class="oplist"><span class="pdate dib">8月10日</span><span class="pname">获得100元代金券</span><span class="use fr">使用说明</span></div>
+            <ul class="useinfo">
+            	<li>兑换码：XXXXXXXXXXXX</li>
+            	<li>111</li>
+                <li>222</li>
+                <li class="tr"><a href="http://m.appgionee.com/mobile/soft/detail?vid=355&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=137270&cpv=3.0.4">立即下载</a></li>
+            </ul>
+            <div class="oplist"><span class="pdate dib">8月10日</span><span class="pname">获得100元代金券</span><span class="use fr">使用说明</span></div>
+            <ul class="useinfo">
+            	<li>兑换码：XXXXXXXXXXXX</li>
+            	<li>111</li>
+                <li>222</li>
+                <li class="tr"><a href="http://m.appgionee.com/mobile/soft/detail?vid=355&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=137270&cpv=3.0.4">立即下载</a></li>
+            </ul>
+            <div class="oplist"><span class="pdate dib">8月10日</span><span class="pname">获得100元代金券</span><span class="use fr">使用说明</span></div>
+            <ul class="useinfo">
+            	<li>兑换码：XXXXXXXXXXXX</li>
+            	<li>111</li>
+                <li>222</li>
+                <li class="tr"><a href="http://m.appgionee.com/mobile/soft/detail?vid=355&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=137270&cpv=3.0.4">立即下载</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="nameContentWrap pa">
+    	<div class="nameContent0 pa tc" style="display:none">
+        	本次活动即将开奖，敬请期待！
+        </div>
+    	<div class="nameContent1 pa" id="scrollDiv" style="display:none;">
+        	<ul class="pa l0 t0">
+        		<li>
+                	<span>11111</span>
+                    <span>11111</span>
+                    <span>11111</span>
+                </li>
+                <li>
+                	<span>22222</span>
+                    <span>22222</span>
+                    <span>22222</span>
+                </li>
+                <li>
+                	<span>333333</span>
+                    <span>33333</span>
+                    <span>33333</span>
+                </li>
+                <li>
+                	<span>44444</span>
+                    <span>44444</span>
+                    <span>44444</span>
+                </li>
+        	</ul>
+        </div>
+        <div class="nameContent2 pa" style="display:none">
+        	<div class="gongxi tc">恭喜您已中奖！</div>
+            <div class="huode pr">您将获得<span class="prizeName">价值100元充值卡一张</span><span class="pa" id="copy" data-clipboard-text="">点击复制</span></div>
+            <div class="prizeCodeWrap">兑奖码：<span class="prizeCode"></span></div>	
+            <div class="dengdai">提示：小编正在为您发放奖品的路上，请您耐心等待...</div>
+        </div>
+    </div>
+</div>
+<div class="setWrap pa">
+	<div class="setTextWrap pa l0 t0 tc">
+    	奖项设置
+    </div>
+     <div class="setContentWrap pa">
+     	<ul>
+     		<li>一等奖（1名）： 金立M6 Plus 手机一部</li>
+            <li>二等奖（100名）： 100元网络购物卡</li>
+            <li>三等奖（300名）： 50元网络购物卡</li>
+            <li>优胜奖（每天1000名）： 5-30元等值礼品</li>
+     	</ul>
+     </div>
+</div>
+<div class="ruleWrap pa">
+	<div class="ruleText">
+    	活动规则
+    </div>
+    <div class="ruleTime">
+    	每日猜金牌活动
+    </div>
+    <div class="ruleone">
+    	活动时间：8月6日-8月21日
+    </div>
+    <div class="ruleoneinfo">
+    	<ul>
+    		<li>1.用户每天可猜测第二天中国队共计获得金牌数（包括已获得金牌数）；</li>
+            <li>2.当天预测次数零点后中国队累计所获的奖牌数；</li>
+            <li>3.每天18:00公布获奖名单，并会以短信或电话的形式通知中奖用户并发放奖品</li>
+    	</ul>
+    </div>
+    <div class="ruleone">
+    	猜本届奥运中国队总金牌数”活动
+    </div>
+    <div class="ruleoneinfo">
+    	<ul>
+    		<li>1.参与截止时间： 8月12日24:00；</li>
+            <li>2.活动期间，每个用户只有1次参与资格；</li>
+            <li>3.越早参与活动的手机用户中奖概率越大，用户多次提交时系统以最后一次提交为依据；</li>
+            <li>4.开奖时间：8月22日下午18:00，在活动页告知；</li>
+            <li>5.参与用户必须留下真实联系方式，因提供信息有误出现无法兑奖等问题时责任自负；</li>
+            <li>6.本活动最终解释权归“故事锁屏”产品运营方所有。</li>
+    	</ul>
+    </div>
+</div>  
+<div class="zcWrap pa">
+	<div class="zcText">
+    	活动支持
+    </div>
+    <div class="glogo">
+    	<ul>
+    		<li class="tc"><a href="http://game.gionee.com"><img src="../images/game.png" alt="金立游戏大厅"></a></li>
+    		<li class="tc"><a href="http://m.appgionee.com/mobile/soft/detail?id=10901&fr=gn_lock_h5"><img src="../images/soft.png" alt="易用汇"></a></li>
+    	</ul>
+    </div>
+    
+    <div class="logoWrap logoWrap1">
+    	<ul>
+    		<li><a href="http://m.appgionee.com/mobile/soft/detail?vid=33&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=10998&cpv=7.5.1"><img src="../images/t1.png" alt="蚂蜂窝"></a></li>
+            <li><a href="http://m.appgionee.com/mobile/soft/detail?vid=37&tid=11&a=9&id=14712&cpv=5.4.0"><img src="../images/t2.png" alt="掌阅"></a></li>
+            <li><a href="http://m.appgionee.com/mobile/soft/detail?vid=355&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=137270&cpv=3.0.4"><img src="../images/t3.png" alt="网易考拉海购"></a></li>
+            <li><a href="http://m.appgionee.com/mobile/soft/detail?vid=37&tid=41&c=&a=9&nt=&fr=&i=&s=&m=&imei=&mac=&id=143432&cpv=2.0.0"><img src="../images/t4.png" alt="网易漫画"></a></li>
+            <li><a href="http://m.1905.com/App/showappList/id/1?__hz=f033ab37c30201f7"><img src="../images/t5.png" alt="1905电影网"></a></li>
+    	</ul>
+    </div>
+    <div class="zhu tc">
+    	注：本活动最终解释权归“故事锁屏”运营方所有
+    </div>
+</div>  
+<div class="load"><img src="../images/loading.gif" alt="" class="load-img"></div>
+<div id="mask" class="pa l0 t0" style="display:none"></div>
+</body>
+</html>

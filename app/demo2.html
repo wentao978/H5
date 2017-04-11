@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>app介绍页面</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+</head>
+<script>
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('4 2(){9 a=3.J.M;a=a>v?v:a;3.f("d")[0].7.2=a/L+"t"}2();4 s(){8(5.6==C||5.6==0){h(4(){2()},i)};8(5.6==o||5.6==-o){h(4(){2()},i)}}9 6=0;4 r(){s()}9 k=5.q;4 m(){K{9 a=5.q;8(a!=k){8(a>5.R){6=o}p{6=0}r();k=a}}N(e){O y z(\'转屏时发生错误\');};h("m()",i)}m();3.A(\'B\',4(){;!4(){9 c=3.D(\'E\');c.F=\'j\';c.7.2=\'G\';3.H.I(c);8(g(l(3.u(\'j\'),\'2\'))!=g(3.f(\'d\')[0].7.2)){9 n=g(l(3.u(\'j\'),\'2\'))/g(3.f(\'d\')[0].7.2);3.f("d")[0].7.2=g(3.f(\'d\')[0].7.2)/n+"t"};4 l(a,b){8(a.w){x a.w[b]}p{x P(a,Q)[b]}}}()},!1);',54,54,'||fontSize|document|function|window|orientation|style|if|var||||html||getElementsByTagName|parseFloat|setTimeout|100|span1span|innerWidthTmp|getStyle|screenOrientationListener||90|else|innerWidth|screenOrientationEvent|hengshuping|px|getElementById|640|currentStyle|return|new|Error|addEventListener|DOMContentLoaded|180|createElement|span|id|1em|body|appendChild|documentElement|try|16|clientWidth|catch|throw|getComputedStyle|false|innerHeight'.split('|'),0,{}))
+</script>
+<style>
+
+
+
+html,body{ margin:0; padding:0; width:100%; height:100%; font-family:"Microsoft Yahei";}
+#top{background: #ffd800; width: 100%; margin: 0; padding: 2.5% 0%;}
+.tImgWrap{margin: 0; padding: 0; display: block; width: 20%; margin: 0 40%;}
+.guImg{ max-width: 100%; display: block; margin: 0 auto;}
+#content{ overflow:hidden; max-width:640px; margin:0 auto; position:relative;}
+.gHeadWrap{ padding:6% 15px 4%; overflow-x:hidden; position:relative;}
+.appicon{ max-width:100%; width:19%; display:inline-block; position:relative; margin-right:4%; border-radius:0.6em;}
+.appInfoWrap{ position:absolute; top:50%; display:inline-block; transform:translateY(-50%); -webkit-transform:translateY(-50%);}
+.appInfo{  overflow:hidden; font-size:1em;}
+.appname{ font-size:0.8em; font-weight:bold; margin:0.6em 0 0.4em;}
+.appdetail{ font-size:0.6em; color:rgba(0,0,0,.5); margin:0.5em 0;}
+/*内联样式*/
+#div1{ width:16em; position:relative; box-sizing:border-box; height:9.3em;}
+#ul1{ position:absolute; top:0; height:9.3em;  list-style:none; left:10px; padding:0; margin:0;}
+#ul1 li{ float:left;  padding-right:10px;}
+#ul1 li.active{float:left;  padding-right:10px; -webkit-animation:translate 1s ;-webkit-animation-fill-mode:both;}
+#ul1 li img{ width:6em; height:9.3em;/* border:1px solid #f00; */box-sizing:border-box;}
+#ul1 li:last-child{ padding-right:0;}
+.gFootWrap{ padding:6% 15px 4%; overflow-x:hidden; position:relative;}
+.footdetail{font-size:0.75em; font-weight:bold; margin:0.3em 0 0.3em;}
+.foottext{font-size:0.6em; color:rgba(0,0,0,.6); margin:0.5em 0;}
+/*里面的轮播*/
+#div2{ width:16em; height:100%; background:#fff; margin:0 auto; position:fixed; z-index:10; left:100%; transform:translateX(0%); -webkit-transform:translateX(0%); top:0; overflow:hidden; }
+#ul2{ position:absolute; left:0; height:100%; margin:0; padding:0;}
+#ul2 li{ width:16em; height:100%; float:left; list-style:none;}
+#ul2 li img{ width:100%; height:100%; float:left; list-style:none;}
+#ol1{ position:absolute; bottom:10px; margin:0 auto; left:50%; transform:translateX(-50%); -webkit-transform:translateX(-50%);}
+#ol1 li{ width:10px; height:10px; list-style:none; margin-right:5px; border:1px solid #b5b5b5; border-radius:50%; float:left;}
+#ol1 .active{ background:#fff; border:1px solid #fff;}
+#div3{ width:16em; height:100%; display:none; margin:0 auto; position:fixed; z-index:10; left:50%; transform:translateX(-50%); -webkit-transform:translateX(-50%); top:0; overflow:hidden; }
+</style>
+<script>
+//move.js
+function startMove(obj,json,times,fx,fn,fnMove){
+	var iCur = {};
+	for(var attr in json){
+		if(attr == 'opacity'){
+			iCur[attr] = Math.round(getStyle(obj,attr)*100);
+		}
+		else{
+			iCur[attr] = parseInt(getStyle(obj,attr));
+		}
+	}
+	
+	var startTime = now();
+	
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		
+		var changeTime = now();
+		
+		var scale = 1 - Math.max(0,(startTime - changeTime + times)/times);
+		
+		if(fnMove){
+			fnMove(scale);
+		}
+		
+		for(var attr in json){
+			                
+			var value = Tween[fx](scale*times, iCur[attr] , json[attr] - iCur[attr] , times );
+			
+			if(attr == 'opacity'){
+				obj.style.filter = 'alpha(opacity='+ value +')';
+				obj.style.opacity = value/100;
+			}
+			else{
+				obj.style[attr] = value + 'px';
+			}
+			
+			if(scale==1){
+				clearInterval(obj.timer);
+				if(fn){
+					fn.call(obj);
+				}
+			}
+			
+		}
+		
+	},13);
+	
+	function now(){
+		return Date.now();
+	}
+	
+}
+
+function getStyle(obj,attr){
+	return getComputedStyle(obj,false)[attr];
+}
+
+var Tween = {
+	linear: function (t, b, c, d){
+		return c*t/d + b;
+	},
+	easeIn: function(t, b, c, d){
+		return c*(t/=d)*t + b;
+	},
+	easeOut: function(t, b, c, d){
+		return -c *(t/=d)*(t-2) + b;
+	},
+	easeBoth: function(t, b, c, d){
+		if ((t/=d/2) < 1) {
+			return c/2*t*t + b;
+		}
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	},
+	easeInStrong: function(t, b, c, d){
+		return c*(t/=d)*t*t*t + b;
+	},
+	easeOutStrong: function(t, b, c, d){
+		return -c * ((t=t/d-1)*t*t*t - 1) + b;
+	},
+	easeBothStrong: function(t, b, c, d){
+		if ((t/=d/2) < 1) {
+			return c/2*t*t*t*t + b;
+		}
+		return -c/2 * ((t-=2)*t*t*t - 2) + b;
+	}
+}
+</script>
+<body>
+<div id="top">
+	<div class="tImgWrap">
+    	<img class="guImg" src="data:image/png;base64,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" alt="故事锁屏">
+    </div>
+</div>
+<div id="content">
+	<div class="gHeadWrap">
+    	<img src="appicon.jpg" class="appicon" alt="应用图标">
+        <div class="appInfoWrap">
+        	<div class="appInfo">
+                <div class="appname">斗地主</div>
+                <div class="appdetail">这里的本内容会不会太少了？？？</div>
+            </div>
+        </div>
+    </div>
+    <div id="div1">
+    	<ul id="ul1">
+        	<li class=""><img src="1.jpg" alt=""></li>
+            <li class=""><img src="2.jpg" alt=""></li>
+    	</ul>
+    </div>
+    <div class="gFootWrap">
+    	<div class="footdetail">应用描述</div>
+        <div class="foottext">阿发撒地方卡机还发啥快递费好看驾驶的联发科家阿斯顿发拉水电费阿斯兰的开发按时肯定会阿萨德</div>
+    </div>
+</div>
+<div id="div2">
+	<ul id="ul2">
+    	<li><img src="1.jpg"></li>
+        <li><img src="2.jpg"></li>
+        <li><img src="3.jpg"></li>
+        <li><img src="4.jpg"></li>
+        <li><img src="5.jpg"></li>
+    </ul>
+    <ol id="ol1">
+    	<li class="active"></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+    </ol>
+</div>
+<div id="div3"></div>
+<script>
+var oDiv1 = document.getElementById('div1');
+var oTop = document.getElementById('top');
+var oUl = document.getElementById("ul1");
+var aLi = oUl.getElementsByTagName("li");
+var len = aLi.length;
+oUl.style.width = aLi.length * aLi[0].offsetWidth - 10 + "px";
+
+for(var i=0;i<aLi.length;i++){
+	console.log(aLi[i].offsetLeft+10,aLi[i].offsetHeight);
+};
+
+var iTop = oDiv1.offsetTop + oTop.offsetHeight;
+console.log(iTop);
+//===========点击进入大图=============
+document.onclick = function(e){
+	console.log(e.target);	
+};
+var oDiv2 = document.getElementById('div2');
+var oDiv3 = document.getElementById('div3');
+var oUl2 = document.getElementById('ul2');
+var oOl = document.getElementById('ol1');
+var aLi2 = oUl2.getElementsByTagName('li');
+var aOlLi = oOl.getElementsByTagName('li');
+var w = aLi2[0].offsetWidth;
+var timer = null;
+oUl2.style.width = aLi2.length * w + 'px';
+var downX2 = 0;
+var downLeft2 = 0;
+var iNow = 0;
+var downTime = 0;
+var oImg = oUl.getElementsByTagName("img");
+imgClick();
+function imgClick(){
+	if(oImg.length){
+		for(var i=0;i<oImg.length;i++){
+			(function(i){
+				oImg[i].onclick = function(){
+					console.log(iNow);
+					//clearInterval(timer);
+					oDiv2.style.display = "block";
+					oDiv2.style.left = "50%";
+					oDiv2.style.transform = "translateX(-50%)";
+					oDiv2.style.transform = "WebkitTranslateX(-50%)";
+					oDiv2.style.transition = "";
+					iNow = i;
+					
+					
+					
+					oDiv3.style.display = "none";
+					oDiv3.style.width = "16em";
+					oDiv3.style.height = "100%";
+					//oDiv3.style.margin = "0 auto";
+					oDiv3.style.left = "50%";
+					oDiv3.style.top = 0;
+					oDiv3.style.transition = "";
+					oDiv3.style.transform = "translateX(-50%)";
+					oDiv3.style.transform = "WebkitTranslateX(-50%)";
+					oDiv3.innerHTML = "";
+					
+					
+					
+					for(var j=0;j<aOlLi.length;j++){
+						aOlLi[j].className = "";
+					};
+					oUl2.style.left = -w * i + "px";
+					aOlLi[i].className = "active";
+				};	
+			})(i);
+		};
+	};	
+};
+
+//滑动大图
+oUl2.ontouchstart = function(ev){
+	var touchs = ev.changedTouches[0];
+	downX2 = touchs.pageX;
+	downLeft2 = this.offsetLeft;
+	var bBtn = true;
+	
+	downTime = Date.now();
+	
+	oUl2.ontouchmove = function(ev){
+		var touchs = ev.changedTouches[0];
+		
+		if( this.offsetLeft >= 0 ){
+			
+			if(bBtn){
+				bBtn = false;
+				downX2 = touchs.pageX;
+			}
+			
+			this.style.left = (touchs.pageX - downX2)/10 + 'px';
+			//this.style.left = 0;
+		}
+		else if( this.offsetLeft <= oDiv2.offsetWidth - oUl2.offsetWidth ){
+			
+			if(bBtn){
+				bBtn = false;
+				downX2 = touchs.pageX;
+			}
+			
+			this.style.left = (touchs.pageX - downX2)/10 + ( oDiv2.offsetWidth - oUl2.offsetWidth ) + 'px';
+			//this.style.left = ( oDiv2.offsetWidth - oUl2.offsetWidth ) + 'px';
+		}
+		else{
+			this.style.left = touchs.pageX - downX2 + downLeft2 + 'px';
+		}
+		
+	};
+	
+	oUl2.ontouchend = function(ev){
+		
+		var touchs = ev.changedTouches[0];
+		
+		if( touchs.pageX < downX2 ){   //←
+			
+			if(iNow != aLi2.length-1){
+				if( downX2 - touchs.pageX > aLi2[0].offsetWidth/2 || (Date.now() - downTime < 300 && downX2 - touchs.pageX > 30 ) ){
+					iNow++;
+				}
+			}
+			
+			startMove( oUl2 , { left : - iNow * w } , 400 , 'easeOut' );
+			
+			
+			for(var i=0;i<aOlLi.length;i++){
+				aOlLi[i].className = "";
+			};
+			aOlLi[iNow].className = "active";
+		}
+		else{    //→
+		
+			if(iNow != 0){
+				if( touchs.pageX - downX2 > aLi2[0].offsetWidth/2 || (Date.now() - downTime < 300 && touchs.pageX - downX2 > 30 ) ){
+					iNow--;
+				}
+			}
+			
+			startMove( oUl2 , { left : - iNow * w } , 400 , 'easeOut' );
+			
+			for(var i=0;i<aOlLi.length;i++){
+				aOlLi[i].className = "";
+			};
+			aOlLi[iNow].className = "active";
+			
+		}
+		
+		this.ontouchmove = null;
+		this.ontouchend = null;
+	};
+	
+};
+oDiv2.onclick = function(e){
+	//alert(e.target.src);
+	oDiv3.style.display = "block";
+	//oDiv3.style.position = "relative";
+	var oImg = document.createElement("img");
+	oImg.src = e.target.src;
+	oImg.style.position = "absolute";
+	oImg.style.left = 0;
+	oImg.style.top = 0;
+	oImg.style.width = "100%";
+	oImg.style.height = "100%";
+
+	oDiv3.appendChild(oImg);
+	
+	oDiv3.style.transition = "all 5s linear";
+	oDiv3.style.left = aLi[iNow].getBoundingClientRect().left + "px";
+	oDiv3.style.top = oDiv1.getBoundingClientRect().top + "px";
+	oDiv3.style.width = aLi[0].offsetWidth - 10 + "px";
+	oDiv3.style.height = aLi[0].offsetHeight+"px";
+	console.log(aLi[0].offsetHeight);
+	oDiv3.style.transform = "translateX(0%)";
+	oDiv3.style.transform = "WebkitTranslateX(0%)";
+	//oDiv3.style.opacity = "0";
+	//width:16em; height:100%; display:none; margin:0 auto; position:fixed; z-index:10; left:50%; transform:translateX(-50%); -webkit-transform:translateX(-50%); top:0; overflow:hidden; 
+	setTimeout(function(){
+		oDiv3.style.display = "none";
+		oDiv3.style.width = "16em";
+		oDiv3.style.height = "100%";
+		//oDiv3.style.margin = "0 auto";
+		oDiv3.style.left = "50%";
+		oDiv3.style.top = 0;
+		oDiv3.style.transition = "";
+		oDiv3.style.transform = "translateX(-50%)";
+		oDiv3.style.transform = "WebkitTranslateX(-50%)";
+		oDiv3.innerHTML = "";
+		imgClick();	
+	},5000);
+	
+	//oDiv2.style.left = "100%";
+	oDiv2.style.display = "none";
+	oDiv2.style.transform = "translateX(0%)";	
+	oDiv2.style.transform = "WebkitTranslateX(0%)";
+	//oDiv2.style.transition = "all 0.3s";
+};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+#shelf{}
+#shelf li{ width:100%; position:relative; overflow:hidden;}
+#shelf li:nth-of-type(1){ width:100%;padding-bottom:65.625%; background:url(../images/1.png) no-repeat; background-size:cover;}
+#shelf .active{ width:100%;padding-bottom:52.5%; background:url(../images/2.png) no-repeat; background-size:cover;}
+#shelf li:nth-of-type(3){ width:100%;padding-bottom:52.5%; background:url(../images/2.png) no-repeat; background-size:cover;}
+#shelf li:nth-last-child(1){ width:100%;padding-bottom:62.5%; background:url(../images/3.png) no-repeat; background-size:cover;}
+
+
+#shelf li dl{ width:92%; height:64.6%;position:absolute; top:32%; left:6%;}
+#shelf li dl dd{ position:absolute; width:30%;}
+#shelf li dl dd img{ width:96%;}
+#shelf li dl dd p{ width:96%; background:rgba(0,0,0,0.3); position:absolute; height:4.2rem; line-height:4.2rem; color:#FFF; text-align:center; bottom:0; font-size:2.4rem;}
+#shelf li dl dd .over{ position:absolute; left:0; top:0; display:none;}
+#shelf li .shelf_cof{ position:absolute; width:26.7%; left:66.40625%; height:auto; top:6%;}
+#shelf .active dl{ width:92%; height:64.6%;position:absolute; top:15%; left:6%;}
+#shelf li:nth-last-child(1) dl{ width:92%; height:64.6%;position:absolute; top:12.5%; left:6%;}

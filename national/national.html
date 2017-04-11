@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>国庆砸金蛋活动</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script type="text/javascript" src="js/size.js"></script>
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/national.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/national.js"></script>
+</head>
+<body>
+<div id="content">
+	<div class="baseDiv">
+        <img src="images/base.png" alt="国庆活动底图" class="img">
+    </div>
+	<div class="hammerDiv pa">
+    	<img src="images/hammer.png" class="img hammer" alt="锤子">
+    </div>
+    <div class="timeDiv pa tc">
+    	您今天还剩<span class="time"></span>次砸蛋机会！
+    </div>
+    <div class="egg egg1 pa"></div>
+    <div class="egg egg2 pa"></div>
+    <div class="egg egg3 pa"></div>
+  	<div class="btnWrap pa tc">
+        <img src="images/rule.png" alt="活动规则" width="42.6%" class="rule">
+        <img src="images/record.png" alt="中奖纪录" width="42.6%" class="record">
+    </div>
+    <div class="notify pa"></div>
+    <div class="scrollDiv pa" id="scrollDiv">
+        <ul class="pa l0 t0"></ul>
+    </div>
+    <div class="thtext pa">
+        特别鸣谢<span style="font-size:0.7em;">（点击下载支持一下吧！）</span>
+    </div>
+    <div class="thIconWrap pa">
+        <a href="javascript:;" class="apk tc">
+            <img src="images/z1.png" alt="倩女幽魂" class="img" data-href="http://p-gamedl.gionee.com/Attachments/dev/apks/2016/09/18/1474184110404_signed.apk" data-id="1">
+            <span>倩女幽魂</span>
+        </a>
+        <a href="javascript:;"  class="apk tc">
+            <img src="images/z2.png" alt="诛仙" class="img" data-href="http://p-gamedl.gionee.com/Attachments/dev/apks/2016/09/18/1474186744269_signed.apk" data-id="2">
+            <span>诛仙</span>
+        </a>
+        <a href="javascript:;" class="apk tc">
+            <img src="images/z3.png" alt="影视大全"  class="img" data-href="http://adres.myaora.net/function/download_apk.php?chl=gn_lock&softid=35479" data-id="3">
+            <span>影视大全</span>
+        </a> 
+        <a href="javascript:;"  class="apk tc">
+            <img src="images/z4.png" alt="天天快报" class="img" data-href="http://adres.myaora.net/function/download_apk.php?chl=gn_lock&softid=140354" data-id="4">
+            <span>天天快报</span>
+        </a>
+        <a href="javascript:;" class="apk tc">
+            <img src="images/z5.png" alt="蚂蜂窝"  class="img" data-href="http://imfw.cn/l/1310660" data-id="5">
+            <span>蚂蜂窝</span>
+        </a>                
+    </div>
+</div>
+
+<!--活动规则-->
+<div id="activeRuleWrap">
+	<div id="activeRuleDiv" class="pf t0">
+        <div class="rules prizeWrap" style="display:none;">
+        	<img src="images/rule2.png" alt="活动规则" class="rule-pic">
+            <!--<div>1、参与方式：点击转盘抽奖，每人只有一次抽</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;奖机会。</div>-->
+            <div>1、参与方式：砸金蛋，每人每天有三次机会</div>
+            <div>2、活动时间：10月1日-10月7日</div>
+            <div>3、奖品设置：</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一等奖2名：金立M6手机；</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二等奖20名：100元京东卡</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三等奖200名：30元移动充值卡</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;四等奖300名：10元京东卡</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;五等奖若干名：蚂蜂窝50元抵用券</div>
+            <!--<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阳光普照奖：随机获得100-500阅饼</div>
+            <div class="tr">（可前往掌阅书城兑换买书）</div>
+            <div style="margin-bottom:2em;">4、工作日上班之后，工作人员会邮寄奖品</div>-->
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button" style="margin-top:4em;">     
+        </div>
+    </div>
+</div>
+<!--50元充值卡一个-->
+<div class="chongzhi prizeWrap pa l0 t0" style="display:none;">
+    <img src="" alt="奖品" class="img prize">
+    <div class="hongbaoForm">
+        <input type="tel" class="phoneNum" placeholder="请输入手机号码">
+        <input type="button" value="确定" class="phoneCon">
+    </div>
+    <div class="hasHongbao" style="display:none;">
+    	中奖号码为&nbsp;<span class="hasNum"></span>
+    </div>
+    <span class="inaddress tc">请确认您的手机号准确无误，一旦确认，无法修改！</span>
+    <span class="inaddress tc">10月8日之后我们会与您联络哦~</span>
+    <span class="inaddress tc" style=" position:relative; top:-1.4em;">欢迎联系我们的QQ群：142876462</span>
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button">     
+</div>
+<!--点击出现弹窗-->
+<div id="divWrap">
+	<div id="popDiv" class="pf t0">
+    	<!--月饼券-->
+        <div class="yuebing prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button"  style="margin-top:0em;">
+        	<span class="textWrap pa">
+            	<span class="text1 dotted tl db"><a href="http://activity.mafengwo.cn/coupon.php?iId=4599" target="_self">点击领取</a></span>
+                <span class="text2 dotted tl db">欢迎联系我们的QQ群：142876462</span>
+            </span>
+           <!--<span class="copyWrap" id="copy" data-clipboard-text="">
+            	点此复制
+            </span>-->
+        	<p>使用规则：</p>
+            <p>1. 优惠金额、适用范围及使用期限以优惠券上显示为准</p>
+            <p>2. 仅限在蚂蜂窝自由行APP商城频道购买产品可用（除旅游保险及蜂抢产品外）</p>
+            <p>3. 每张优惠券限用一次，每个订单限用一张。</p>
+            <p>4. 优惠券不能兑换成现金</p>
+            <p>5. 本活动解释权归蚂蜂窝所有</p>
+        </div>
+        <!--实物奖品-->
+        <div class="jdk prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，稍后会以邮寄的方式发送到您的手中~</span>
+            <span class="inaddress tc" style=" position:relative; top:-1.4em;">欢迎联系我们的QQ群：142876462</span>
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+        <!--收货地址-->
+        <div class="shaddress prizeWrap inAddressWrap" style="display:none;">
+            <div class="tianxie">填写收货地址</div>
+            <form>
+                <div class="form-control">
+                    <label>收货人</label>
+                    <input type="text" name="" id="" class="inText formPerson" placeholder="请输入收货人">
+                </div>
+                <div class="form-control">
+                    <label>联系方式</label>
+                    <input type="tel" name="" id="" class="inText formNum" placeholder="请输入联系方式">
+                </div>
+                <div class="form-control">
+                    <label>详细地址</label>
+                    <input type="text" name="" id="" class="inText formAddress" placeholder="请输入详细地址">
+                </div>
+                <input type="button" value="确定" class="addressCon">
+            </form>    
+            <img src="images/close-button.png" alt="关闭按钮" class="close-button">  
+        </div>
+        <!--收货信息-->
+        <div class="addressInfo prizeWrap shaddress shouhuoWrap" style="display:none;">
+            <div class="shouhuo">收货信息</div>
+            <img src="images/phone.png" alt="奖品" class="img prizeImg">
+            <div class="namePhone">
+                <span class="nameInfo"></span>&nbsp; 
+                <span class="phoneInfo"></span>
+            </div>
+            <div class="otherInfo">
+                <span class="addrInfo"></span>
+            </div>
+            <input type="button" value="修改收货信息" class="xiugai">
+            <img src="images/close-button.png" alt="关闭按钮" class="close-button">
+            
+            <p>活动规则</p>
+            <p>1、中国大陆地区（除去港澳台、西藏、新疆等快递邮寄不到的偏远地址）均可参加此活动；</p>
+            <p>2、此活动真实有效，并且不收取任何快递等费用； </p>
+            <p>3、最终解释权归金立锁屏所有！</p>     
+        </div>
+    </div>
+</div>
+<div class="load"><img src="images/loading.gif" alt="" class="load-img"></div>
+<div id="tipsWrap">
+	<div class="success pf l0 t0"><img src="images/fail.png" alt="很遗憾，没中奖" class="img"></div>
+	<!--<div class="error pf l0 t0"><img src="images/over.png" alt="机会用完了" class="img"></div>-->
+</div>
+<div id="mask" class="pa l0 t0" style="display:none"></div>
+</body>
+</html>

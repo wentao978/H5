@@ -1,0 +1,7 @@
+.wrap_shelf{ width:100%; padding-bottom:177.5%;background:url(../images/shelf_bg2.jpg) no-repeat;position:relative; background-size:cover;}
+.shelf_cof{ position:absolute; width:26.7%; left:66.40625%; height:auto; top:2.5887%;}
+.shelf1{ padding-left:9.6%; width:90.4%; position:absolute; top:13.8%; height:auto;}
+.shelf1 ul li{ width:27.0408%; float:left; margin-right:4.6875%; position:relative;margin-bottom:14.6%;}
+.shelf1 ul li img{ width:100%;}
+.shelf1 ul li p{ width:100%; background:rgba(0,0,0,0.3); position:absolute; height:4.2rem; line-height:4.2rem; color:#FFF; text-align:center; bottom:0; font-size:2.4rem;}
+.shelf1 .over{ position:absolute; left:0; top:0; display:none;}

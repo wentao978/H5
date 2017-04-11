@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新年活动-苹果树</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/year.css">
+<script type="text/javascript" src="../js/size.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/year.js"></script>
+</head>
+<body>
+<div id="loading">
+	<div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+    </div>
+    <div class="loadingText" id="loadingText">新年活动正在努力加载中···</div>
+</div>
+<div class="baseDiv pr">
+	<img src="../images/base.jpg" alt="苹果树底图" class="img">
+</div>
+<div class="wordDiv pa t0">
+	<img src="../images/word.png" alt="祝福文字" class="dWord">
+</div>
+<div class="twoDiv pa qiqiu">
+	<img src="" alt="气球" class="dTwo">
+</div>
+<div class="zeroDiv pa qiqiu">
+	<img src="" alt="气球" class="dZero">
+</div>
+<div class="oneDiv pa qiqiu">
+	<img src="" alt="气球" class="dOne">
+</div>
+<div class="sixDiv pa qiqiu">
+	<img src="" alt="气球" class="dSix">
+</div>
+<div class="sidai1Div pa">
+	<img src="../images/sidai1.png" alt="蓝丝带" class="img">
+</div>
+<div class="sidai2Div pa">
+	<img src="../images/sidai2.png" alt="红丝带" class="img">
+</div>
+<div class="sidaiDiv pa">
+	<img src="../images/sidai.png" alt="丝带" class="dSidai">
+</div>
+<div class="star1Div pa">
+	<img src="../images/star1.png" alt="星星" class="dStar1">
+</div>
+<div class="star2Div pa">
+	<img src="../images/star2.png" alt="星星" class="dStar2">
+</div>
+<div class="boyDiv pa">
+	<img src="../images/boy.png" alt="男孩" class="dBoy">
+</div>
+<div class="sownmanDiv pa">
+	<img src="../images/sownman.png" alt="雪人" class="dSownman">
+</div>
+<div class="moneyDiv pa">
+	<img src="../images/money.png" alt="钱币" class="dMoney">
+</div>
+<div class="walletDiv pa">
+	<img src="../images/redwallet.png" alt="红钱夹" class="wallet">
+</div>
+<div class="logoDiv pa">
+	<img src="../images/logo.png" alt="log" class="img">
+</div>
+<div class="appleDiv appleDiv1 pa">
+	<img src="" alt="苹果" class="img appleImg">
+</div>
+<div class="appleDiv appleDiv2 pa">
+	<img src="" alt="苹果" class="img appleImg">
+</div>
+<div class="appleDiv appleDiv3 pa">
+	<img src="" alt="苹果" class="img appleImg">
+</div>
+<div class="appleDiv appleDiv4 pa">
+	<img src="" alt="苹果" class="img appleImg">
+</div>
+<div class="appleDiv appleDiv5 pa">
+	<img src="" alt="苹果" class="img appleImg">
+</div>
+<div class="appleDiv appleDiv6 pa">
+	<img src="" alt="苹果" class="img appleImg">
+</div>
+<div class="appleDiv appleDiv7 pa">
+	<img src="" alt="苹果" class="img appleImg">
+</div>
+<div class="appleDiv appleDiv8 pa">
+	<img src="" alt="苹果" class="img appleImg">
+</div>
+<div class="pa chatDiv">
+	<img src="" alt="点我" class="dChat">
+</div>
+<div class="scrollDiv pa" id="scrollDiv">
+	<ul class="pa l0 t0">
+	</ul>
+</div>
+<!--点击出现弹窗-->
+<div id="divWrap">
+	<div id="popDiv" class="pf t0">
+    	<!--歌曲-->
+    	<div class="music prizeWrap" style="display:none;">
+        	<img src="../images/0.png" alt="歌曲" class="img prize">
+            <div class="musicWrap pr">
+            	<img src="../images/pause.png" alt="播放按钮" class="play pa">
+                <span class="musicName pa"></span>
+                <span class="songerName pa"></span>
+            </div>
+            <div class="slideWrap pr">
+            	<span class="inDiv pa l0 t0"></span>
+                <img src="../images/slide.png" alt="进度按钮" class="pa pbtn">
+            </div>
+            <audio src="" class="sing"  preload="auto">您的浏览器不支持歌曲播放audio标签</audio>
+            <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+        </div>
+    	<!--第一类：福字，财神，豪车，Id：1,2,3-->
+        <div class="static prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+            <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+        </div>
+        <!--大众点评购物券-->
+        <div class="dazhong prizeWrap" style="display:none;">
+        	<img src="../images/4.png" alt="奖品" class="img prize">
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+        	<span class="textWrap pa">
+            	<span class="text"></span>
+            </span>
+        	<p>操作步骤</p>
+            <p>1、下载大众点评APP；</p>
+            <p>2、安装启动并注册/登录大众点评APP；</p>
+            <p>3、下单时输入优惠券码即可优惠相应金额，请在有效期内使用，过期无效。</p>
+            <p>使用期限：2016.02.07-2016.02.29</p>
+        </div>
+        <!--格瓦拉电影票-->
+        <div class="gewala prizeWrap" style="display:none;">
+        	<img src="../images/5.png" alt="奖品" class="img prize">
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+        	<span class="textWrap pa">
+            	<span class="text"></span>
+            </span>
+        	<p>使用流程及规则</p>
+            <p>1、注册/登陆格瓦拉APP→我的钱包→电影票券</p>
+            <p>2、选择电影→选择票券→支付余款</p>
+            <p>有效期：2016.2.29，适用格瓦拉全国合作影院</p>
+        </div>
+        <!--蚂蜂窝优惠券-->
+        <div class="mafengwo prizeWrap" style="display:none;">
+        	<img src="../images/6.png" alt="奖品" class="img prize">
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+        	<span class="textWrap pa">
+            	<span class="text"></span>
+            </span>
+        	<p>操作步骤</p>
+            <p>1、下载蚂蜂窝自由行App；</p>
+            <p>2、安装启动蚂蜂窝自由行；</p>
+            <p>3、我的-我的优惠券，点击右上角“+”输入优惠码,请在有效期前使用，过期无效。</p>
+            <p>使用期限：2016.02.07-2016.03.06</p>
+        </div>
+        <!--魔鬼猫优惠券-->
+        <div class="moguimao prizeWrap" style="display:none;">
+        	<img src="../images/7.png" alt="奖品" class="img prize">
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+        	<span class="textWrap pa">
+            	<span class="text"></span>
+            </span>
+        	<p>操作步骤</p>
+            <p>1、进入魔鬼猫微店领取优惠券；</p>
+            <p>2、下单时填入兑换码即可优惠相应金额。</p>
+            <p>3、我的-我的优惠券，点击右上角“+”输入优惠码,请在有效期前使用，过期无效。</p>
+            <p>使用期限：2016.02.07-2016.03.07</p>
+        </div>
+        <!--鲜生活优惠券-->
+        <div class="xianshenghuo prizeWrap" style="display:none;">
+        	<img src="../images/8.png" alt="奖品" class="img prize">
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+        	<span class="textWrap pa">
+            	<span class="text"></span>
+            </span>
+        	<p>操作步骤</p>
+            <p>1、点击链接http://www.xianlife.com/wap/；</p>
+            <p>2、进入页面左下方个人中心进行优惠券兑换；</p>
+            <p>优惠券截止日期：2016年3月7日</p>
+        </div>
+        <!--京东优惠券-->
+        <div class="jingdong prizeWrap" style="display:none;">
+        	<img src="../images/9.png" alt="奖品" class="img prize">
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+        	<span class="textWrap pa">
+            	<span class="text"></span>
+            </span>
+        	<p>操作步骤</p>
+            <p>1、<a href="javascript:;" class="jdlianjie" target="_blank">点击链接</a>进入京东商城，领取优惠券；</p>
+            <p>2、进入页面左下方个人中心进行优惠券兑换；</p>
+            <p>使用期限：2016.02.05-2016.02.14</p>
+        </div>
+        <!--魔鬼猫公仔-->
+        <div class="gongzai prizeWrap" style="display:none;">
+        	<img src="../images/10.png" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，2月15日之后我们会用邮寄的形式送到你手中~</span>
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+            <span class="intro">中国暗黑潮牌第一品牌，吞噬负能量的魔鬼猫！</span>
+        </div>
+        <!--CD一张-->
+        <div class="cd prizeWrap" style="display:none;">
+        	<img src="../images/11.png" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，2月15日之后我们会用邮寄的形式送到你手中~</span>
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+        <!--手机支架一个-->
+        <div class="zhijia prizeWrap" style="display:none;">
+        	<img src="../images/12.png" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，2月15日之后我们会用邮寄的形式送到你手中~</span>
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+        <!--M5+一个-->
+        <div class="m5p prizeWrap" style="display:none;">
+        	<img src="../images/13.png" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，2月15日之后我们会用邮寄的形式送到你手中~</span>
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+        <!--耳机一个-->
+        <div class="listen prizeWrap" style="display:none;">
+        	<img src="../images/14.png" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，2月15日之后我们会用邮寄的形式送到你手中~</span>
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+        <!--100京东卡一个-->
+        <div class="jdk prizeWrap" style="display:none;">
+        	<img src="../images/17.png" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，2月15日之后我们会用邮寄的形式送到你手中~</span>
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+        <!--收货信息-->
+        <div class="addressInfo prizeWrap" style="display:none;">
+        	<div class="shouhuo">收货信息</div>
+        	<img src="../images/13.png" alt="奖品" class="img prizeImg">
+            <div class="namePhone">
+            	<span class="nameInfo">金小鸡</span>&nbsp; 
+                <span class="phoneInfo">1385625648</span>
+            </div>
+            <div class="otherInfo">
+            	<span class="areaInfo">北京市</span>，
+                <span class="addrInfo">海淀区中关村软件园启明星辰大厦</span>
+            </div>
+            <input type="button" value="修改收货信息" class="xiugai">
+       	    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">
+            <p>活动规则</p>
+            <p>1、中国大陆地区（除去港澳台、西藏、新疆等快递邮寄不到的偏远地址）均可参加此活动；</p>
+            <p>2、此活动真实有效，并且不收取任何快递等费用； </p>
+            <p>3、最终解释权归金立锁屏所有！</p>     
+        </div>
+    </div>
+</div>
+<!--现金红包20元-->
+<div class="xianjin prizeWrap pa l0 t0" style="display:none;">
+    <img src="../images/15.png" alt="奖品" class="img prize">
+    <div class="hongbaoForm" style="display:none;">
+        <input type="tel" class="phoneNum" placeholder="请输入手机号码">
+        <input type="button" value="确定" class="phoneCon">
+    </div>
+    <div class="hasHongbao">
+    	中奖号码为&nbsp;<span class="hasNum">13856487956</span>
+    </div>
+    <span class="inaddress tc">请确认您的手机号准确无误，一旦确认，无法修改！</span>
+    <span class="inaddress tc">2月15日之后我们会与您联络哦~</span>
+    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">     
+</div>
+<!--30元充值卡一个-->
+<div class="chongzhi prizeWrap pa l0 t0" style="display:none;">
+    <img src="../images/16.png" alt="奖品" class="img prize">
+    <div class="hongbaoForm" style="display:none;">
+        <input type="tel" class="phoneNum" placeholder="请输入手机号码">
+        <input type="button" value="确定" class="phoneCon">
+    </div>
+    <div class="hasHongbao">
+    	中奖号码为&nbsp;<span class="hasNum">13856487956</span>
+    </div>
+    <span class="inaddress tc">请确认您的手机号准确无误，一旦确认，无法修改！</span>
+    <span class="inaddress tc">2月15日之后我们会与您联络哦~</span>
+    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">     
+</div>
+ <!--收货地址-->
+<div class="shaddress prizeWrap pa l0 t0" style="display:none;">
+    <div class="tianxie">填写收货地址</div>
+    <form>
+        <div class="form-control">
+            <label>收货人</label>
+            <input type="text" name="" id="" class="inText formPerson" placeholder="请输入收货人">
+        </div>
+        <div class="form-control">
+            <label>联系方式</label>
+            <input type="tel" name="" id="" class="inText formNum" placeholder="请输入联系方式">
+        </div>
+        <div class="form-control">
+            <label>所在地区</label>
+            <input type="text" name="" id="" class="inText formArea" placeholder="请输入所在地区">
+        </div>
+        <div class="form-control">
+            <label>详细地址</label>
+            <input type="text" name="" id="" class="inText formAddress" placeholder="请输入详细地址">
+        </div>
+        <input type="button" value="确定" class="addressCon">
+    </form>    
+    <img src="../images/close-button.png" alt="关闭按钮" class="close-button">  
+</div>
+
+
+
+
+
+
+
+
+<!--<div id="test" style="width:4em; height:4em; background:#0C0; position:absolute; top:0; z-index:2">
+</div>-->
+<div id="mask" class="pa l0 t0" style="display:none"></div>
+</body>
+</html>

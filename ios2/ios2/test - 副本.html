@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:100%; height:420px; border:1px red solid; position:relative; box-sizing:border-box; overflow:hidden;}
+#ul1{ position:absolute; top:0; height:398px; list-style:none;}
+#ul1 li{ float:left; width:300px; height:398px; line-height:780px; padding-right:10px;}
+#ul1 li:first-child{ left:20px;}
+#ul1 li:last-child{ padding-right:0;}
+</style>
+<script src="move.js"></script>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	var oUl = document.getElementById('ul1');
+	var downX = 0;
+	var downY = 0;
+	var downLeft = 0;
+	var prevX = 0;
+	var iSpeedX = 0;
+	var timer = null;
+	var len = 5;
+	
+	for(var i=0;i<len;i++){
+		var oLi = document.createElement('li');
+		var oImg = document.createElement('img');
+		oImg.src = '11.jpg';
+		oImg.style.width = '100%'; 
+		oLi.appendChild( oImg );
+		oUl.appendChild( oLi );
+	}
+	
+	var aLi = oUl.getElementsByTagName('li');
+	oUl.style.width = aLi.length * aLi[0].offsetWidth - 10 + 'px';
+	oUl.ontouchstart = function(ev){
+		
+		var touchs = ev.changedTouches[0];
+		downX = touchs.pageX;
+		downY = touchs.pageX;
+		downLeft = this.offsetLeft;
+		prevX = touchs.pageX;
+		var bBtn = true;
+		
+		oUl.ontouchmove = function(ev){
+			var touchs = ev.changedTouches[0];
+			var _this = this;
+			iSpeedX = touchs.pageX - prevX;
+			prevX = touchs.pageX;
+			
+			if(Math.abs(touchs.pageY - downY) > 0){
+				ev.preventDefault();
+			}
+			
+			if(this.offsetLeft >= 0){
+				if(bBtn){
+					bBtn = false;
+					downX = touchs.pageX;
+				}
+				this.style.left = (touchs.pageX - downX)/5 + 'px';
+				
+				if(this.offsetLeft > 100){
+					this.style.left = 100 + 'px';
+				}
+				
+			}
+			else if(this.offsetLeft <= oDiv.offsetWidth - oUl.offsetWidth){
+				if(bBtn){
+					bBtn = false;
+					downX = touchs.pageX;
+				}
+				this.style.left = (touchs.pageX - downX)/5 + (oDiv.offsetWidth - oUl.offsetWidth) + 'px';
+				
+				if(this.offsetLeft <= oDiv.offsetWidth - oUl.offsetWidth - 100){
+					this.style.left = oDiv.offsetWidth - oUl.offsetWidth - 100 + 'px';
+				}
+				
+			}
+			else{
+				
+				this.style.left = touchs.pageX - downX + downLeft + 'px';
+				
+			}
+		};
+		oUl.ontouchend = function(){
+			this.ontouchmove = null;
+			this.ontouchend = null;
+			var This = this;
+			clearInterval(timer);
+			timer = setInterval(function(){
+				
+				if( Math.abs(iSpeedX)<=1 || This.offsetLeft > 50 || This.offsetLeft <= oDiv.offsetWidth - oUl.offsetWidth - 50 ){
+					clearInterval(timer);
+					if( This.offsetLeft >= 0 ){
+						startMove(This,{left : 0},400,'easeOut');
+						
+					}
+					else if( This.offsetLeft <= oDiv.offsetWidth - oUl.offsetWidth ){
+						startMove(This,{left : oDiv.offsetWidth - oUl.offsetWidth},400,'easeOut');	
+					}
+				}
+				else{
+					iSpeedX *= 0.95;
+					This.style.left = This.offsetLeft + iSpeedX + 'px';
+				}
+				
+			},13);
+			
+			
+		};
+	};
+	
+};
+</script>
+</head>
+
+<body style="height:2000px;">
+<div id="div1">
+	<ul id="ul1">
+    </ul>
+</div>
+</body>
+</html>

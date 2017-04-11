@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>端午节刮刮乐</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script type="text/javascript" src="js/size.js"></script>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/dwj.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dwj.js"></script>
+<script type="text/javascript" src="js/clipboard.min.js"></script>
+</head>
+<body>
+<div id="loading">
+	<div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+    </div>
+    <div class="loadingText" id="loadingText">端午节刮刮乐···</div>
+</div>
+<div id="bg" class="pf"></div>
+<div id="content">
+	<div class="topPicWrap">
+    	<img src="images/topPic.png" alt="端午刮刮乐" class="img topPic">
+    </div>
+	<div class="logo">
+    	<img src="images/nav.png" alt="故事锁屏" class="img nav">
+        <img src="images/game.png" alt="游戏大厅" class="img game">
+    </div>
+	<div class="gpWrap pr">
+    	<canvas id="c1" width="9em" height="50" style="width:12em; height:4.4em; margin:1.48em auto; display:block;"></canvas>
+        <div class="gpText pa">
+        	您今天还有<span class="rn">1</span>次刮奖机会！还能获得<span class="ln">3</span>次！
+        </div>
+    </div>
+	<div class="recordWrap" style="display:none;">
+    	<div class="recordText">获奖记录</div>
+        <div class="recordList">
+        	<p href="javascript:;" class="db fl">
+            	<span class="textName">金立S8</span>
+                <img src="images/my_s8.png" alt="s8手机" class="img">
+            </p>
+        </div>
+    </div>
+	<div class="gameWrap">
+    	<div class="gameText">游戏推荐</div>
+        <div class="gameList">
+        	<p href="javascript:;" class="db fl">
+            	<span class="textName">倩女幽魂</span>
+                <img src="images/qian.png" alt="倩女幽魂" class="img">
+                <a class="downgame" data-id="146339095128" href="http://ami.gionee.com/Attachments/dev/apks/2016/05/16/146339095128_signed.apk ">下载</a>
+            </p>
+            <p href="javascript:;" class="db fl">
+            	<span class="textName">问道</span>
+                <img src="images/wen.png" alt="问道" class="img">
+                 <a class="downgame" data-id="1462958783408" href="http://ami.gionee.com/Attachments/dev/apks/2016/05/11/1462958783408_signed.apk">下载</a>
+            </p>
+            <p href="javascript:;" class="db fl">
+            	<span class="textName">倚天屠龙记</span>
+                <img src="images/yi.png" alt="倚天屠龙记" class="img">
+                 <a class="downgame" data-id="1462859874512" href="http://ami.gionee.com/Attachments/dev/apks/2016/05/10/1462859874512_signed.apk ">下载</a>
+            </p>
+        </div>
+    </div>
+	<div class="tipsWrap">
+    	<div class="tipsText">活动说明</div>
+       	<p>1.活动时间:2016-6-9 00:00:00-2016-6-10 00:00:00</p>
+        <p>2.活动期间，首次登陆可免费获得1次刮奖机会</p>
+        <p>3.在本活动页面下载并安装1款游戏就可以获得一次刮奖机会</p>
+        <p>4.再次下载1款游戏可以再获得一次刮奖机会</p>
+        <p>5.下载安装成功后才可抽奖，同一款游戏只能参与一次，重复下载不可获得刮奖机会</p>
+        <p>6.获得游戏礼包奖品直接可到对应游戏兑换</p>
+        <p>7.获得实物奖品的中奖用户，请如实填写收获地址和联系方式，我们会在活动结束后7个工作日之内安排 发放；由于个人原因未正确填写地址导致快递无法送达的，我们将不再发放。（中奖后请正确填写信息 ）</p>
+        <p>8.为公平起见，禁一切刷奖行为，一经查出，将取消活动参与资格和获奖资格</p>
+        <p>9.本活动最终解释权归金立故事锁屏&金立游戏大厅所有。</p>
+        <p class="qun">金立故事锁屏QQ群：142876462 </p>
+        <p>金立游戏客服QQ号: 4006286618</p>
+    </div>
+</div>
+
+<!--点击出现弹窗-->
+<div id="divWrap" style="display:block;">
+	<div id="popDiv" class="pf t0">
+    	<!--券-->
+        <div class="yuebing prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button">
+        	<span class="textWrap pa">
+            	<span class="text"></span>
+            </span>
+            <span class="copyWrap" id="copy" data-clipboard-text="">
+            	点此复制
+            </span>
+        	<!--<p>兑换方式：</p>
+            <p>1、下载掌阅APP；</p>
+            <p>2、安装/登录掌阅APP，在【我的】-【我的资产】 -【礼品中心】进行兑换使用，代金券可在掌阅书城购买书籍；</p>
+            <p>3、使用期限：16年4月23日-5月8日24:00截止。请在有效期内使用，逾期作废。</p>-->
+            
+        </div>
+        <!--实物奖品-->
+        <div class="jdk prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，稍后会以邮寄的形式送到你手中~</span>
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+        <!--收货地址-->
+        <div class="shaddress prizeWrap inAddressWrap" style="display:none;">
+            <div class="tianxie">填写收货地址</div>
+            <form>
+                <div class="form-control">
+                    <label>收货人</label>
+                    <input type="text" name="" id="" class="inText formPerson" placeholder="请输入收货人">
+                </div>
+                <div class="form-control">
+                    <label>联系方式</label>
+                    <input type="tel" name="" id="" class="inText formNum" placeholder="请输入联系方式">
+                </div>
+                <div class="form-control">
+                    <label>详细地址</label>
+                    <input type="text" name="" id="" class="inText formAddress" placeholder="请输入详细地址">
+                </div>
+                <input type="button" value="确定" class="addressCon">
+            </form>    
+            <img src="images/close-button.png" alt="关闭按钮" class="close-button">  
+        </div>
+        <!--收货信息-->
+        <div class="addressInfo prizeWrap shaddress shouhuoWrap" style="display:none;">
+            <div class="shouhuo">收货信息</div>
+            <img src="" alt="奖品" class="img prizeImg">
+            <div class="namePhone">
+                <span class="nameInfo"></span>&nbsp; 
+                <span class="phoneInfo"></span>
+            </div>
+            <div class="otherInfo">
+                <span class="addrInfo"></span>
+            </div>
+            <input type="button" value="修改收货信息" class="xiugai">
+            <img src="images/close-button.png" alt="关闭按钮" class="close-button">
+            
+            <p>活动规则</p>
+            <p>1、中国大陆地区（除去港澳台、西藏、新疆等快递邮寄不到的偏远地址）均可参加此活动；</p>
+            <p>2、此活动真实有效，并且不收取任何快递等费用； </p>
+            <p>3、最终解释权归金立锁屏所有！</p>     
+        </div>
+    </div>
+</div>
+<!--话费100元-->
+<div class="chongzhi prizeWrap  pa l0 t0" style="display:none;">
+    <img src="" alt="奖品" class="img prize">
+    <div class="hongbaoForm" style="display:block;">
+        <input type="tel" class="phoneNum" placeholder="请输入手机号码">
+        <input type="button" value="确定" class="phoneCon">
+    </div>
+    <div class="hasHongbao" style="display:none">
+        中奖号码为&nbsp;<span class="hasNum"></span>
+    </div>
+    <span class="inaddress tc" style="display:block;">请确认您的手机号准确无误，一旦确认，无法修改！</span>
+    <span class="inaddress tc" style="display:none;">2月15日之后我们会与您联络哦~</span>
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button">
+    <p>本次活动积分发放：</p>  
+    <p>活动结束后，请登陆金立游戏大厅注册账号，在2个工作日内等待积分到账。本次活动所奖励积分可以参与2次积分抽奖，最高奖项为金立手机！</p>   
+</div>
+
+<div class="load"><img src="images/loading.gif" alt="" class="load-img"></div>
+<div id="mask" class="pa l0 t0" style="display:none"></div>
+</body>
+</html>

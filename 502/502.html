@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>内容获取失败,请点击重试</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+</head>
+<style>
+html,body{ margin:0; padding:0; width:100%; height:100%; background:#fffdde; overflow:hidden;}
+body{ max-width:640px; margin:0 auto;}
+.start-wrap{ width:37.87%; margin:20% 31.065% 0; overflow:hidden;}
+.start{ width:100%; position:relative; padding-bottom:115.1589%;}
+.start-img{ width:100%; position:absolute; left:0; top:0;}
+.word-wrap{ width:28.24%; margin:3% 35.88% 0; overflow:hidden;}
+.word{ width:100%; position:relative; padding-bottom:37.0492%;}
+.word-img{ width:100%; position:absolute; left:0; top:0;}
+.reload{ width:100%; text-align:center; color:#999885; margin:3% auto; font-size:18px;}
+@media screen and (max-width: 320px) { /*当屏幕尺寸小于等于320px时，应用下面的CSS样式*/
+  .reload{ font-size:16px;}
+}
+@media screen and (min-width: 321px) and (max-width: 360px) { /*当屏幕尺寸大于321px小于等于360px时，应用下面的CSS样式*/
+  .reload{ font-size:18px;}
+}
+@media screen and (min-width: 361px) { /*当屏幕尺寸大于361px时，应用下面的CSS样式*/
+  .reload{ font-size:20px;}
+}
+</style>
+<script>
+window.onload = function(){
+	document.onclick = function(){
+		window.location.reload();
+	};
+};
+</script>
+<body>
+<div class="start-wrap">
+	<div class="start">
+        <img src="./images/start.png" alt="星星" class="start-img">
+    </div>
+</div>
+<div class="word-wrap">
+	<div class="word">
+        <img src="./images/word.png" alt="故事锁屏" class="word-img">
+    </div>
+</div>
+<div class="reload">内容获取失败,请点击重试</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+/************Happy New Year*************/
+body{max-width:640px; margin:0 auto; position:relative; background:#f4fbff;}
+.baseDiv{ width:100%; z-index:1;}
+.topWrap{ width:88%; margin:0 6%; height:3.4em; top:8em;}
+.inWrap,.hasWrap{ height:3.4em; width:100%;}
+.tpText{ color:#000; font-size:0.75em; z-index:2;}
+.tpText .gray,.totalTextWrap .gray{ font-size:0.7em; color:rgba(0,0,0,.6)}
+.tpInput,.totalInput{ height:2.8em; line-height:2.8em; color:#3a457b; z-index:2; font-size:0.75em;}
+.inPrize,.inTotal{ background:#dff2ff; width:6em; height:2em; position:relative; top:-0.2em; padding:0.3em 0.4em; border:1px solid #3a457b; border-radius:0.2em;}
+.tpSuccess{ z-index:2; color:#32a558; height:2.2em; line-height:2.2em; text-align:center; width:100%; font-size:0.8em;}
+.tpInfo{ z-index:2; font-size:0.62em; margin-top:0.5em;}
+.tip1,.tip2,.tip3,.tip4{ left:15.5em; top:9em; z-index:3; width:15em; background:#929799; color:#fff; border-radius:0.4em;font-size:0.35em; padding:0.3em 0.5em;}
+.tip1::after,.tip2::after,.tip3::after{content:"";  position:absolute; width:0; height:0; border-left:1em solid transparent; border-right:1em solid transparent; border-bottom:1em solid #929799; left:50%; top:-1em; transform:translateX(-50%);}
+.totalWrap{width:88%; margin:0 6%; height:9.4em; top:12em; z-index:2;}
+.totalTextWrap{ font-size:0.75em;}
+.totalInput{ height:3.2em;}
+.tip2{ top:11.9em;}
+.hasGray{ color:#999;}
+#input2.gray{ color:#333; background:#999; border:1px solid #666;}
+.telWrap{ width:82%; margin:0 11% 0 7%; height:2.6em;}
+.phoneWrap{ width:13em; font-size:0.75em; height:1.6em; border:1px solid #3a457b; background:#dff2ff; border-radius:0.2em; padding:0.3em 0.5em 0.2em;}
+.telWrap .red{ position:relative; top:-0.3em; margin-right:0.1em;}
+.p86{ width:18%; height:1.5em; line-height:1.5em; border-right:0.1em solid #3a457b;}
+.pInput{ width:72%; height:1.6em;}
+.phoneInput{ width:98%; height:1.8em; position:relative; top:0.1em; line-height:1.8em; box-sizing: border-box; font-size:0.8em; border:0; background: transparent; padding:0em 0.5em 0 1.2em;} 
+.tip3{ left:12.8em; top:18.1em;}
+.submit{ width:77%; margin:0 10% 11%; cursor:pointer; box-shadow:0 5px 5px #32a558;  height:2em; line-height:2em; font-size:0.8em; background:#32a558; color:#fff; text-align:center; border-radius:0.2em;}
+.submit.disabled{ background:#a5a5a5; box-shadow:0 5px 5px #a5a5a5;}
+.thanksWrap{ z-index:2; top:22.2em; width:80%; margin:0 10%;}
+.thanksText,.ruleText{ font-size:0.8em; margin-bottom:0.5em;}
+.logoWrap{ width:100%; height:2em}
+.logoWrap ul{ width:100%; height:2em;}
+.logoWrap ul li{ float:left; margin:0 0.3em;}
+.logoWrap ul img{ width:1.8em; height:1.8em;}
+.logoWrap1{ width:100%; height:2em; margin-top:0.5em;}
+.logoWrap1 ul{ width:100%; height:2em;}
+.logoWrap1 ul li{ float:left; margin:0 0.5em;}
+.logoWrap1 ul img{ width:1.6em; height:1.6em;}
+.tip4{ width:17em; left:12em; top:0.7em;padding:0.6em 0.8em;}
+.tip4::after{content:"";  position:absolute; width:0; height:0; border-left:1em solid transparent; border-right:1em solid transparent; border-top:1em solid #929799; left:77%; top:2.2em; transform:translateX(-50%);}
+.nameWrap{ z-index:45; height:7em; top:26.6em; width:100%;}
+.nameTextWrap,.setTextWrap{ width:6.8em; z-index:3; font-size:0.7em; height:2em; line-height:2em; color:#fff; background:#134785;}
+.zhongjiang{ z-index:3;left:15em; font-size:0.7em; top:1.5em;}
+.zhongjiang a{text-decoration:underline; color:#000; }
+.nameContentWrap,.setContentWrap{ z-index:2; width:78%; margin:0 6% 8%; padding:0 4%; height:5.6em; top:0.8em; box-shadow:0 0 0.4em #c8deed;}
+.nameContent0,.nameContent1,.nameContent2{ width:90%; top:1.2em; height:3.8em; line-height:1.4em; overflow:hidden;}
+.nameContent0{font-size:0.7em; top:2.2em; line-height:3.8em;}
+.nameContent1{ top:1.4em;}
+.nameContent1 ul li{ height:7.6em; line-height:2.2em; font-size:0.6em;}
+.nameContent1 ul li span{ display:block;}
+.gongxi{ color:#ff3e3e; font-size:0.8em;}
+.huode{ font-size:0.7em; height:1em; line-height:1em; }
+.prizeCodeWrap{ font-size:0.6em; height:1em; line-height:1.55em;}
+#copy{ right:0.9em; top:1.7em; width:5em; text-align:center; font-size:0.6em; color:#fff; background:#134785; padding:0.3em 0.3em 0.2em; border-radius:0.3em; cursor:pointer;}
+.dengdai{ font-size:0.5em; color:rgba(0,0,0,.6)}
+.zjjl{z-index:8;width:78%; overflow-y:auto; background:#fff; margin:0 6%; padding:1.6em 4% 0; height:10em; top:0.8em; box-shadow:0 0 0.4em #c8deed;}
+.zClose{ text-decoration:none; cursor:pointer; right:0.4em; top:0.2em; font-size:0.8em; color:#a2a2a2;}
+.zjt{ color:#ff3e3e; font-size:0.7em; left:50%; transform:translateX(-50%); top:0.3em;}
+.noPrize{ font-size:0.8em; line-height:4.4em;}
+.prizeList{ font-size:0.6em;}
+.pdate{ width:4.2em;}
+.black{ color:#000;}
+.use{ text-decoration:underline; color:#32a558;}
+.zs{ text-decoration:none; color:#134784;}
+.useinfo{ display:none; font-size:0.8em; margin-left:0.8em; margin-bottom:0.5em; color:rgba(0,0,0,.8)}
+.useinfo li.tr{ height:1.5em;}
+.useinfo a{ border:0.1em solid #22ac38; color:#22ac38; background:transparent; padding:0.3em 0.5em; border-radius:0.2em;}
+.oplist{ height:1.6em;}
+.setWrap{ z-index:2; height:7em; top:33.6em; width:100%;}
+.setTextWrap{ background:#32a558;}
+.setContentWrap{ font-size:0.6em; height:10em;}
+.setContentWrap ul{ margin-top:2em;}
+.setContentWrap ul li{ line-height:1.8}
+.ruleWrap{ z-index:2; top:41em;width:84%; margin:0 8%;}
+.ruleTime{ font-size:0.7em; margin:0.3em 0;}
+.ruleone{ font-size:0.6em; margin:0.7em 0 0.3em;}
+.ruleoneinfo{ margin:0.4em 0; font-size:0.51em;}
+.ruleoneinfo li{ line-height:2;}
+.zcWrap{ z-index:2; top:60em; width:84%; margin:0 8%;}
+.glogo{ height:2.2em;}
+.glogo{} li.tc{ float:left; width:50%;}
+.glogo{} li.tc img{ width:5em; height:1.68em;}
+.zcText{ font-size:0.8em; margin-bottom:0.8em;}
+.zhu{ color:rgba(0,0,0,.6); font-size:0.5em; margin-top:2em;}
+
+
+.red{ color:#ff1f1f;}
+.dChat{ animation: myChat 5s infinite ease-in-out; -webkit-animation: myChat 5s infinite ease-in-out;}
+.scrollDiv{ width:90%; color:#fff; background: -webkit-linear-gradient(left, #df4b57 10%,rgba(255,255,255,0) 100%); bottom:9em; font-size:.6em; height:2.4em; line-height:2.4em; overflow:hidden; z-index:2}
+.scrollDiv ul{ z-index:3; left:.5em;}
+/**********apple***********/
+/*********弹窗********/
+#mask{ width:100%; height:100%; background:rgba(0,0,0,.8); z-index:80; /*display:none;*/}
+/*************toast***************/
+.fadeIn{ -webkit-animation-name: fadeIn; animation-name: fadeIn;}
+.toast{ z-index:1000; position:fixed; display:block; white-space:nowrap; top:45%; left:50%; transform:translateX(-50%); -webkit-transform:translateX(-50%); font-size:.7em; background:rgba(0,0,0,.4); color:rgba(255,255,255,.9); padding:0.25em 1em 0.2em; border-radius:1em;}
+.load{ width:100%; height:100%; position:fixed; z-index:40; background:rgba(214,214,214,0.5); left:0; top:0; display:none;}
+.load-img{position:fixed; display:block; top:45%; z-index:40; left:50%; transform:translateX(-50%); -webkit-transform:translateX(-50%);}
+.animated-slow{ -webkit-animation-duration: 2.6s; animation-duration: 2.6s; -webkit-animation-fill-mode: both; animation-fill-mode: both; z-index: 2000;}
+.animated-fast{ -webkit-animation-duration: 1.4s; animation-duration: 1.4s; -webkit-animation-fill-mode: both; animation-fill-mode: both; z-index: 20;}
+/***loading动画***/
+#loading{width:100%; height:100%; background:#333;position:fixed; left:0; top:0; z-index:200; color:#5fb336;}
+.loadingText{ color:#999; font-size:.7em; position:fixed; top:50%; width:100%; text-align:center;}
+.spinner{ width: 20px; height: 20px; left:50%;  top:45%; margin:-10px 0 0 -10px;; position:fixed; z-index:100;}
+.container1 > div, .container2 > div, .container3 > div{ width: 6px; height: 6px; background-color: #DB1236; border-radius: 100%; position: absolute; -webkit-animation: bouncedelay 1.2s infinite ease-in-out; animation: bouncedelay 1.2s infinite ease-in-out; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+.spinner .spinner-container{ position: absolute; width: 100%; height: 100%;}
+.container2{ -webkit-transform: rotateZ(45deg); transform: rotateZ(45deg);}
+.container3{ -webkit-transform: rotateZ(90deg); transform: rotateZ(90deg);}
+.circle1{ top: 0; left: 0; }
+.circle2{ top: 0; right: 0; }
+.circle3{ right: 0; bottom: 0; }
+.circle4{ left: 0; bottom: 0; }
+.container2 .circle1{ -webkit-animation-delay: -1.1s; animation-delay: -1.1s;}
+.container3 .circle1{ -webkit-animation-delay: -1.0s; animation-delay: -1.0s;}
+.container1 .circle2{ -webkit-animation-delay: -0.9s; animation-delay: -0.9s;}
+.container2 .circle2{ -webkit-animation-delay: -0.8s; animation-delay: -0.8s;} 
+.container3 .circle2{ -webkit-animation-delay: -0.7s; animation-delay: -0.7s;}
+.container1 .circle3{ -webkit-animation-delay: -0.6s; animation-delay: -0.6s;}
+.container2 .circle3{ -webkit-animation-delay: -0.5s; animation-delay: -0.5s;}
+.container3 .circle3{ -webkit-animation-delay: -0.4s; animation-delay: -0.4s;}
+.container1 .circle4{ -webkit-animation-delay: -0.3s; animation-delay: -0.3s;}
+.container2 .circle4{ -webkit-animation-delay: -0.2s; animation-delay: -0.2s;}
+.container3 .circle4{ -webkit-animation-delay: -0.1s; animation-delay: -0.1s;}
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+@keyframes bouncedelay {
+  0%, 80%, 100% { transform: scale(0.0); -webkit-transform: scale(0.0); } 
+  40% { transform: scale(1.0); -webkit-transform: scale(1.0);}
+}
+@-webkit-keyframes fadeIn {
+	0% { opacity:0 }
+	30%,70%{ opacity:1}
+	100%{opacity:0}
+}
+@keyframes fadeIn {
+	0%{opacity:0}
+	30%,70%{opacity:1}
+	100%{opacity:0}
+}
+@keyframes myChat{
+0%   { opacity:0;}
+50%  { opacity:1;}
+100% { opacity:0;}
+}
+@-webkit-keyframes myChat{
+0%   { opacity:0;}
+50%  { opacity:1;}
+100% { opacity:0;}
+}

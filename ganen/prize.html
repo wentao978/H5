@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>抽奖红包</title>
+<meta name="viewport" content="width=device-width,target-densitydpi=device-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/prize.css">
+<script type="text/javascript" src="js/size.js"></script>
+<script type="text/javascript" src="js/prize.js"></script>
+</head>
+<body>
+<div class="top pr oh">
+	<img src="" alt="图片" class="img" id="rbg">
+    <img src="" alt="图片" class="pa pic" id="prize"> 	
+    <img src="" alt="图片" class="pa text10" id="text">
+</div>
+<div id="formWrap">
+    <p class="tipText white">红包会通过微信发给你，请留下你的微信号/手机号</p>
+	<form id="form">
+    	<input type="tel" placeholder="请输入微信号/手机号" class="formInput bwhite tc" name="info"/>
+        <input type="button" value="提交" class="formSubmit tc white"/>
+    </form>
+    <input type="button" value="已提交" class="hasFormSubmit" id="hasFormSubmit"/>
+</div>
+<div id="noWrap">
+	<div id="noHasPrize"></div>
+</div>
+<div id="loading">
+	<div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+    </div>
+    <div class="loadingText" id="loadingText">红包正在努力加载中···</div>
+</div>
+</body>
+</html>

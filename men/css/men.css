@@ -1,0 +1,11 @@
+body{max-width:640px; margin:0 auto; position:relative; background:#ff3962;}
+#bg{background:#ff3962;z-index:1}
+#say{ width:94.167%; margin:2.15em 2.9165% 0; z-index:2}
+#content{ width:80%; z-index:1; background:#fff; margin:20.46em 4% 2em; border-radius:.6em; padding:2.6em 6% 1.2em;}
+#content .text{ font-size:0.6em; margin:1em 0; color:#ff3962;}
+#content .pText{ font-size:0.6em; margin:0.6em 0; color:#ff3962;}
+#content .pText1{ margin-top:1.5em; font-size:0.8em;}
+#content .pImg{ margin:1em auto; width:40%;}
+#content .pTitle{ margin:0.8em 0 0.8em -0.45em;}
+strong{ font-weight:bold;}
+.big{ font-size:1.2em;}

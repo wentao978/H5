@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<body>
+<script>
+! function (e, t) {
+    function o(e, t, o, n) {
+        i.cookie = [e + "=" + t, n, "path=/", "expires=" + o.toGMTString()].join(";")
+    }
+    function n() {
+        o("square_center", "", r), e.stop(), location.reload()
+    }
+    var i = t,
+        r = new Date,
+        l = e.localStorage,
+        s = e.Zepto;
+    try {
+        l.setItem("_t", 1), l.removeItem("_t"), i.querySelector("html").getAttribute("data-lsversion") !== l.getItem(
+            "square_center_version") && n()
+    } catch (a) {
+        r.setTime(+r + 6048e5), o("lssp", "no", r), n()
+    }
+    var c = function (e) {
+        var t = l.getItem(e);
+        if (t) {
+            var o = i.querySelector("[data-lsid=" + e + "]");
+            o.innerHTML = t, -1 === e.indexOf("js") || s || window.eval(t)
+        } else n()
+    };
+    e.setCookie = o, e.LSToHtml = c
+}(window, document);;
+</script>
+<script>
+	LSToHtml('square_center_csst');
+</script>
+</body>
+</html>

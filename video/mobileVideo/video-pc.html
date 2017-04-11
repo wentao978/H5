@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>移动端视频播放器</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+
+#gioneeVideoWrap{ position:relative; overflow:hidden;}
+#gioneeVideoWrap * { box-sizing:border-box; margin:0;}
+.contentVideoWrap{ position:absolute;}
+.videoContent{ position:relative; overflow:hidden; width:100%; height:100%;}
+.videoContent video{ position: relative; display: block; top: 0; left: 0; width: 100%; height: 100%; background: #000;}
+.poster{ position:absolute; overflow:hidden; z-index:4;}
+.poster img{ display:block;}
+.pauseWrap{ position:relative;}
+.pause{ position: absolute; z-index: 5; left: 0; right: 0; bottom: 0; top: 0; width: 76px; height: 50px; line-height: 50px; margin: auto!important; overflow: hidden; font-size: 0; text-align: center; background: rgba(23,23,23,.9); border-radius: 3px; cursor: pointer;}
+.pauseBtn{ position: absolute; display: block; width: 0; height: 0; left: 30px; top: 14px; margin: auto; overflow: hidden;vertical-align: middle; border: 20px solid transparent; border-width: 12px 21px; border-left-color: #fff;}
+.loading{ position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; top: 0; width: 50px; height: 50px;  margin: auto!important; }
+.controls{ position: absolute; display: table; z-index: 6; bottom: 0;left: 0;width: 100%; height: 40px;  background-color: rgba(23,23,23,.9); -webkit-transform: translateZ(0); -webkit-transition: bottom .3s ease; transition: bottom .3s ease;}
+.ppbtn{ display: table-cell; width: 46px; height: 100%; vertical-align: top;}
+.ppbtn button{ box-sizing:border-box; margin:0; display: block; width: 100%; height: 100%; padding: 0; border: 0 none; background: none; text-align: center; font-size: 0;    cursor: pointer;}
+.ppbtn button span{ display: inline-block; width: 0; height: 0; margin-left: 16px; vertical-align: middle; background: none; border: 15px solid transparent; border-width: 10px 15px; border-left-color: #fff; font-size: 0; color: transparent;}
+.ppbtn button .pausing{ width: 10px; height: 15px; border: 0 none; margin-left: 0; border-left: 2px solid #fff;    border-right: 2px solid #fff;}
+.timebar{ position: relative; display: table-cell; height: 100%; padding: 0; vertical-align: top;}
+.timetotal{ position: relative; display: block; top: 18px; width: 100%; height: 4px; background: rgba(44,44,44,.8); cursor: pointer;}
+.timeloaded{position: absolute; left: 0; top: 1px; z-index: 1; background: rgba(255,255,255,.2); height:2px; display:block; max-width: 100%!important;}
+.timecurrent{ position: absolute; left: 0; top: 1px; z-index: 2; display: block; max-width: 100%!important; height: 2px; background: #FF9000;}
+.timehandler{ position: absolute; z-index: 3;  top:-7px; margin-left:0; display: block;width: 16px; height: 16px; overflow: hidden; background: #F3F5F7; cursor: pointer; border-radius:50%}
+/*.timehandler:after{ content: ''; position: absolute; left: 6px; top: 5px; width: 15px; height: 15px; background: #F3F5F7; background-image: -webkit-radial-gradient(50% 50%,circle closest-side,#F7F9FB 31%,#D2D4D5 100%); -webkit-background-clip: content-box; background-clip: content-box; border-radius: 100%;border-top-left-radius: 100%; border-top-right-radius: 100%; border-bottom-left-radius: 100%; border-bottom-right-radius: 100%;}*/
+.timepanel{position: absolute;right: 0; bottom: -18px; z-index: 2; font-size: 10px; color: #888; font-family: PingFangSC-Light,HelveticaNeue-Light,arial;}
+.timepanelcurrent{ color: #DEDEDF; float:left; font-size:10px; line-height:1;}
+.timepaneltotal{ float:left; color:#888; font-size:10px; line-height:1;}
+.fullbtn{ display: table-cell; width: 50px; height: 100%;}
+.fullbtn button{ position:relative; display: block; width: 100%;height: 100%; padding: 0; border: 0 none; background: none; text-align: center; font-size: 0; cursor: pointer;}
+.fullbtn button:before{content: ''; position: absolute; right: 17px; top: 11px; width: 4px; height: 4px; border-right: 2px solid #fff; border-top: 2px solid #fff; -webkit-box-sizing: content-box;  box-sizing: content-box;}
+.fullbtn button:after{ content: ''; position: absolute; top: 11px; right: 18px; width: 8px; height: 2px;    background-color: #fff; -webkit-transform: rotate(-45deg); -webkit-transform-origin: right center}
+.fullbtn button span:before{ content: ''; position: absolute; left: 17px; bottom: 14px; width: 4px; height: 4px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; -webkit-box-sizing: content-box; box-sizing: content-box;}
+.fullbtn button span:after{ content: ''; position: absolute; bottom: 14px; left: 18px;  width: 8px; height: 2px; background-color: #fff;     -webkit-transform: rotate(-45deg); -webkit-transform-origin: left center;}
+button:active{ outline:none; border:none;}
+button{ outline:none;}
+</style>
+<script>
+window.onload = function(){
+	var oV = document.getElementsByTagName("video")[0];
+	//alert(oV[0].videoWidth)
+	//Array.prototype.forEach.call(aV,function(oV){
+		
+		oV.removeAttribute("controls");
+		var oWrap = document.getElementById("gioneeVideoWrap");
+		var oContentWrap = document.querySelector(".contentVideoWrap");
+		var oP = document.querySelector(".poster");
+		var opImg = document.querySelector(".poster>img");
+		var oC = document.querySelector(".videoContent");
+		var oPauseWrap = document.querySelector(".pauseWrap");
+		var oPauseBtn = document.querySelector(".pauseBtn");
+		var oLoading = document.querySelector(".loading");
+		var oTimeTotal = document.querySelector(".timepaneltotal");
+		var oTimeWidthTotal = document.querySelector(".timetotal");
+		var oTimeWidthCurrent = document.querySelector(".timecurrent");
+		var oTimeCurrent = document.querySelector(".timepanelcurrent");
+		var oTimeWidthCurrent = document.querySelector(".timecurrent");
+		var oTimeLoaded = document.querySelector(".timeloaded");
+		var oTimeHandler = document.querySelector(".timehandler");
+		var oTimeBar = document.querySelector(".timebar");
+		
+		var w,h,s,W=oWrap.offsetWidth;	
+		
+		w = oV.getAttribute("width");
+		h = oV.getAttribute("height");
+		s = h/w;
+		console.log(s);
+		
+		oWrap.style.width = W + "px";
+		oP.style.width = W + "px";
+		opImg.style.width = W + "px";
+		oContentWrap.style.width = W + "px";
+		//oC.style.width = "100%";
+		oPauseWrap.style.width = W + "px";
+		//oV.style.width = W + "px";
+			
+		oWrap.style.height = Math.floor(W * s) + "px";
+		oContentWrap.style.height = Math.floor(W * s) + "px";			
+		oP.style.height = Math.floor(W * s) + "px";
+		opImg.style.height = Math.floor(W * s) + "px";			
+		//oC.style.height = "100%";
+		oPauseWrap.style.height = Math.floor(W * s) + "px";
+		//oV.style.height = Math.floor(W * s) + "px";
+		
+		oV.setAttribute("width","100%");
+		oV.setAttribute("height","100%");
+		
+		//var isPaused = true;
+		var loader = true;
+		oWrap.onclick = function(){
+			if(loader){
+				oV.setAttribute("preload","auto");
+				oV.setAttribute("autobuffer","true");	
+			};
+			loader = oV;	
+		};
+		
+		oPauseBtn.onclick = function(){
+			
+			
+			oPauseWrap.style.display = "none";
+			oP.style.display = "none";
+			if(oV.paused){
+				oV.play();
+			};
+		};
+		
+		oV.onclick = function(){
+			if(!oV.paused){
+				oV.pause();
+				oPauseWrap.style.display = "block";	
+			};	
+		};
+		
+		
+		/*当音频/视频处于加载过程中时，会依次发生以下事件：
+		loadstart
+		durationchange
+		loadedmetadata
+		loadeddata
+		progress
+		canplay
+		canplaythrough*/
+		var _oV = oV;
+		oV.addEventListener('loadedmetadata',function(){  //当指定的音频/视频的元数据已加载时，会发生 loadedmetadata 事件
+			
+			oTimeCurrent.innerHTML = timeFormat(0);
+			oTimeTotal.innerHTML = timeFormat(oV.duration);	
+			setTimeout(startBuffer(),1000);
+			
+		},!1);
+		
+		oV.addEventListener('timeupdate',function(){  //事件在视频/音频（audio/video）当前的播放位置发生改变时触发。
+			oTimeCurrent.innerHTML = timeFormat(oV.currentTime);
+			oTimeWidthCurrent.style.width = 100 * (Math.ceil(oV.currentTime)/Math.ceil(oV.duration)) + "%"; 	
+			oTimeHandler.style.left = (oTimeWidthTotal.offsetWidth-16)/Math.ceil(oV.duration)*(Math.ceil(oV.currentTime)) + "px";
+		},!1);
+		
+		oV.addEventListener('canplay',function(){  //当浏览器能够开始播放指定的音频/视频时，发生 canplay 事件。
+			oLoading.style.display = "none";	
+		},!1);
+		
+		var completeloaded = false;
+		oV.addEventListener('canplaythrough',function(){  //当浏览器预计能够在不停下来进行缓冲的情况下持续播放指定的音频/视频时，会发生 canplaythrough 事件。
+			completeloaded = true;
+		},!1);
+	
+		oV.addEventListener('ended',function(){  //ended 属性返回音频/视频是否已结束
+			//$('.btnPlay').removeClass('paused');
+			oV.pause();
+		},!1);
+		
+		oV.addEventListener('seeking',function(){  //seeking 属性返回用户目前是否在音频/视频中寻址
+			if(!completeloaded) { 
+				oLoading.style.display = "block";	
+			};
+		},!1);
+		
+		oV.addEventListener('seeked',function(){   //onseeked 事件在用户重新定位视频/音频（audio/video）的播放位置后触发
+			
+		},!1);
+		
+		oV.addEventListener('waiting',function(){   // waiting 事件在视频由于需要缓冲下一帧而停止时触发。
+			oLoading.style.display = "block";	
+		},!1);
+				
+			
+		var timeDrag = false;
+		oTimeHandler.onmousedown = function(e){
+			timeDrag = true;
+			oV.pause();
+			oLoading.style.display = "block";
+			document.onmousemove = function(e){
+				if(timeDrag){
+					uptimebar(e.pageX);
+				};
+				oV.pause();
+				oLoading.style.display = "block";
+			};
+			document.onmouseup = function(e){
+				if(timeDrag){
+					timeDrag = false;
+					uptimebar(e.pageX);
+					oLoading.style.display = "none";
+					oV.play();
+				};
+				document.onmousemove = null;
+				document.onmouseup = null;	
+			};
+			return false;
+		};
+				
+		function uptimebar(e){
+			var maxduration = oV.duration;
+			var position = e - oWrap.offsetLeft - 46;
+			var percentage = 100 * position / (oTimeWidthTotal.offsetWidth - 16);
+			if(percentage > 100) {
+				percentage = 100;
+			};
+			if(percentage < 0) {
+				percentage = 0;
+			};
+			oTimeHandler.style.left = position + "px";
+			oTimeWidthCurrent.style.width = percentage + "%";
+			oV.currentTime = maxduration * percentage / 100;	
+		};
+		
+		function startBuffer(){
+			var currentBuffer = _oV.buffered.end(0);  //获取当前缓冲的时间
+			var maxduration = _oV.duration;
+			oTimeLoaded.style.width = 100 * Math.ceil(currentBuffer) / Math.ceil(maxduration) + "%";
+			if(currentBuffer < maxduration) {
+				setTimeout(startBuffer, 500);
+			};
+		};
+		
+	//});
+	
+	
+	
+	function timeFormat(seconds){
+		var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+		var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+		return m+":"+s;
+	};
+	
+};
+</script>
+</head>
+<body>
+<div id="gioneeVideoWrap">
+	<div class="contentVideoWrap">
+    	<div class="videoContent">
+            <video id="v1" width="352" height="272" x-webkit-airplay="true" webkit-playsinline="true" preload="none" poster="" src="1.mp4">
+                 <source src="1.mp4" type="video/mp4"/>
+            </video>
+        </div>
+    </div>
+    <div class="poster">
+    	<img src="psb.jpg" >
+    </div>
+    <img src="loading_small.gif" class="loading">
+    <div class="pauseWrap">
+    	<div class="pause">
+    		<span class="pauseBtn"></span>
+	    </div>
+    </div>
+    <div class="controls">
+    	<div class="ppbtn">
+           <button type="button" title="播放/暂停">
+               <span class="">播放</span>
+           </button>  
+        </div>
+        <div class="timebar">
+        	<span class="timetotal">
+            	<span class="timeloaded"></span>
+                <span class="timecurrent"></span>
+                <span class="timehandler"></span>
+                <span class="timepanel">
+                	<span class="timepanelcurrent">00:00</span>
+                    <span style="float:left">/</span>
+                    <span class="timepaneltotal">00:00</span>
+                </span>
+            </span>
+        </div>
+        <div class="fullbtn">
+        	<button type="button" title="切换全屏 ">
+            	<span></span>
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

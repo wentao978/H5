@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>陪你一起过圣诞</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<script>
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('8 3(){e a=2.w.o;a=a>i?i:a;2.6("7")[0].4.3=a/x+"g"}3();2.r(\'s\',8(){;!8(){e c=2.u(\'v\');c.B=\'9\';c.4.3=\'y\';2.l.m(c);h(p.q(5(d(2.f(\'9\'),\'3\'))-5(2.6(\'7\')[0].4.3))>1){e n=5(d(2.f(\'9\'),\'3\'))/5(2.6(\'7\')[0].4.3);2.6("7")[0].4.3=5(2.6(\'7\')[0].4.3)/n+"g"};8 d(a,b){h(a.j){k a.j[b]}z{k A(a,t)[b]}}}()},!1);',38,38,'||document|fontSize|style|parseFloat|getElementsByTagName|html|function|span1span||||getStyle|var|getElementById|px|if|640|currentStyle|return|body|appendChild||clientWidth|Math|abs|addEventListener|DOMContentLoaded|false|createElement|span|documentElement|16|1em|else|getComputedStyle|id'.split('|'),0,{}))
+</script>
+<style>
+body,html{margin:0; padding:0; width:100%; height:100%; background-color:#be1f33;}
+body{ max-width: 640px; margin: 0 auto; position:relative;}
+img{ display:block;vertical-align:bottom;}
+.main{ position:relative; width:100%; overflow:hidden;}
+.snow{ position:fixed; top:0; opacity:0; width:16rem; overflow:hidden; height:100%;background-size:16rem 16rem;background-image: url(./source/1.png);}
+.snow.active{ opacity:1; -webkit-animation: "snow" 28s linear infinite;}
+.pa{ position:absolute;}
+.pf{ position:fixed;}
+.pic{ width:14rem; z-index:2;}
+.pic.active{ -webkit-animation: "pic" 20s ease-in-out infinite; -webkit-animation-fill-mode: forwards;}
+#s2,#s3{ display:none;}
+@-webkit-keyframes snow {
+    0% {
+        background-position-x: 0;
+        background-position-y: 0
+    }
+
+    50% {
+        background-position-y: 16rem
+    }
+
+    100% {
+        background-position-x: 16rem;
+        background-position-y: 32rem
+    }
+}
+@-webkit-keyframes pic {
+    0% {
+	   top:24rem;
+       left:-82%;
+    }
+    100% {
+	   top:-14rem;
+       left:100%;
+    }
+}
+</style>
+<body>
+<div class="main">
+    <img src="./source/s1.jpg" alt="陪你一起过圣诞" width="100%" id="s1">
+    <img src="" data-src="./source/s2.jpg" alt="陪你一起过圣诞" width="100%" id="s2">
+    <img src="" data-src="./source/s3.jpg" alt="陪你一起过圣诞" width="100%" id="s3">
+    <div class="pic pf">
+        <img src="./source/2.png" alt="麋鹿送好礼" width="100%">
+    </div>
+</div>
+<div class="snow"></div>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+	var oSnow = document.querySelector(".snow");
+	var oPic = document.querySelector(".pic");
+	var oS1 = document.querySelector("#s1");
+	var oS2 = document.querySelector("#s2");
+	var oS3 = document.querySelector("#s3");
+	var oImg1 = new Image();
+	oImg1.src = "./source/s1.jpg";
+	oImg1.onload = function(){
+		var picSnow = new Image();
+		picSnow.src = "./source/1.png";
+		picSnow.onload = function(){
+			oSnow.classList.add("active");	
+		}
+		picSnow.onerror = function(){
+			oSnow.style.display = "none";	
+		}
+		var picOld = new Image();
+		picOld.src = "./source/2.png";
+		picOld.onload = function(){
+			oPic.classList.add("active");		
+		}
+		picOld.onerror = function(){
+			oPic.style.display = "none";	
+		}
+		//music
+		var audio = new Audio("./source/music.mp3")
+		audio.play();
+		audio.volume = "0.8";
+		
+		if(audio.paused){
+			document.ontouchstart = function(){
+				audio.play();	
+			}
+		}
+		
+		var oImg2 = new Image();
+		oImg2.src = "./source/s2.jpg";
+		oImg2.onload = function(){
+			oS2.src = "./source/s2.jpg";	
+			oS2.style.display = "block";
+			
+			var oImg3 = new Image();
+			oImg3.src = "./source/s3.jpg";
+			oImg3.onload = function(){
+				oS3.src = "./source/s3.jpg";	
+				oS3.style.display = "block";
+				
+			}
+			oImg3.onerror = function(){
+				oS3.style.display = "none";	
+			}
+			
+		}
+		oImg2.onerror = function(){
+			oS2.style.display = "none";
+		};	
+	}
+	oImg1.onerror = function(){
+		oS1.src = "./source/s1.jpg";	
+	}	
+},!1);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

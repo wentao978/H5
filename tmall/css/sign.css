@@ -1,0 +1,6 @@
+body{ background:#a71b1f;}
+.wrap_sign{ width:100%; padding-bottom:177.5%; background:url(../images/sign_bg.jpg) no-repeat; background-size:cover; position:relative;}
+.happy{ width:75%; height:auto; position:absolute; top:11%; left:12.5%;}
+.sign_info{ width:72%; height:15rem;left:14%; position:absolute; top:23.7676%;}
+.sign_info p{height:5rem; line-height:5rem; font-size:3rem; text-align:left; color:#FFF;}
+.sign_btn{width:28.4%; height:8rem; line-height:8rem; background:-webkit-linear-gradient(#c80004 0,#880000 100%); text-align:center; color:#FFF; font-size:3rem; left:35.8%; position:absolute; top:48.5%; border:0.4rem solid #f7bf8c; border-radius:1.5rem;}  

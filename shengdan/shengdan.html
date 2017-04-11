@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>圣诞节抽奖活动</title>
+<meta name="Description" content="圣诞活动" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/shengdan.css">
+<script type="text/javascript" src="js/size.js"></script>
+<script type="text/javascript" src="js/shengdan.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--<script>
+
+var onBridgeReady = function() {
+        var wxTitle = share_title,
+          wxDesc = "", 
+          _imgurl = 'http://mat1.gtimg.com/bj/images/zt2/winterOlympicGames/dah_share.jpg',
+          linkUrl = document.location.href + "?v" + Math.random();
+        WeixinJSBridge.on('menu:share:timeline', function(argv) {
+          WeixinJSBridge.invoke('shareTimeline', {
+            "img_url": _imgurl,
+            "img_width": "120",
+            "img_height": "120",
+            "link": linkUrl,
+            "desc": "",
+            "title": share_title
+          }, function() {});
+        })
+        WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+          WeixinJSBridge.invoke('sendAppMessage', {
+            "img_url": _imgurl,
+            "link": linkUrl,
+            "desc": share_title,
+            "title": ""
+          }, function() {})
+        })
+        WeixinJSBridge.on('menu:share:weibo', function(argv) {
+          WeixinJSBridge.invoke('shareWeibo', {
+            "content": share_title,
+            "url": linkUrl,
+          }, function(res) {});
+        })
+      }
+      window.onload = function(){
+		  
+	
+        if (document.addEventListener) {
+          document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        } else if (document.attachEvent) {
+          document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+          document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+      
+	}
+
+
+
+
+
+
+
+
+
+
+	   var imgUrl = "http://www.huceo.com/logo.jpg";  //注意必须是绝对路径
+
+       var lineLink = "http://www.huceo.com/wdt.html";   //同样，必须是绝对路径
+       var descContent = '最轻便的微电台精选，天天更新，你听或是不听，我都这里等着你。'; //分享给朋友或朋友圈时的文字简介
+       var shareTitle = '微信电台精选';  //分享title
+       var appid = ''; //apiID，可留空
+        
+       function shareFriend() {
+           WeixinJSBridge.invoke('sendAppMessage',{
+               "appid": appid,
+               "img_url": imgUrl,
+               "img_width": "200",
+               "img_height": "200",
+               "link": lineLink,
+               "desc": descContent,
+               "title": shareTitle
+           }, function(res) {
+               //_report('send_msg', res.err_msg);
+           })
+       }
+      
+       // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+       document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+           // 发送给好友
+           WeixinJSBridge.on('menu:share:appmessage', function(argv){
+               shareFriend();
+           });
+           // 分享到朋友圈
+           WeixinJSBridge.on('menu:share:timeline', function(argv){
+               shareTimeline();
+           });
+           // 分享到微博
+           WeixinJSBridge.on('menu:share:weibo', function(argv){
+               shareWeibo();
+           });
+       }, false);
+	   
+	   
+	    function shareTimeline() {
+           WeixinJSBridge.invoke('shareTimeline',{
+               "img_url": imgUrl,
+               "img_width": "200",
+               "img_height": "200",
+               "link": lineLink,
+               "desc": descContent,
+               "title": shareTitle
+           }, function(res) {
+                  //_report('timeline', res.err_msg);
+           });
+       }
+       function shareWeibo() {
+           WeixinJSBridge.invoke('shareWeibo',{
+               "content": descContent,
+               "url": lineLink,
+           }, function(res) {
+               //_report('weibo', res.err_msg);
+           });
+       }
+	   
+</script>-->
+</head>
+<body>
+<div id="bg" class="pf l0 t0"></div>
+<div id="content" class="pr oh" style="display:none;">
+    <div class="top pr oh">
+        <img src="images/img1.jpg" alt="" class="img">
+    </div>
+	<div class="info">
+    	圣诞节来了，测一测你前世是什么圣诞节小精灵？
+    </div>
+    <div class="form">
+    	<input type="text" name="name" id="name" placeholder="请输入您的姓名">
+        <input type="button" value="开始测试" id="start" class="btn">
+    </div>
+    <img src="images/ho2.png" alt="" class="fimg">
+</div>
+<div id="result">
+	<div class="text">
+    	<span id="reName"></span>的圣诞节小精灵是
+    </div>	
+	<div style=" " class="imgWrap">
+        <span id="reTitle">圣诞</span>           
+        <img src="images/1.png" alt="" class="img">
+    </div>
+	<div class="text2" id="reBody">
+    	
+    </div>
+    <div class="text3">
+        如果测试结果为“小天使”，请截图发给故事锁屏官方微信（微信号：gushi_cn）,小编随机抽取40名，将得到<span style="color:red">10-100元</span>微信红包！每个微信号限中奖一次，红包发放时间: 12月26日至31日
+    </div>
+    <div class="reWrap">
+    	<input type="button" value="重新测试" id="re" class="btn">
+    </div>
+</div>
+<div id="loading">
+	<div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+    </div>
+    <div class="loadingText" id="loadingText">圣诞活动正在努力加载中···</div>
+</div>
+</body>
+</html>

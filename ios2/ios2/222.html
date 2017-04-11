@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<title>无标题文档</title>
+<script>
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('4 2(){9 a=3.J.M;a=a>v?v:a;3.f("d")[0].7.2=a/L+"t"}2();4 s(){8(5.6==C||5.6==0){h(4(){2()},i)};8(5.6==o||5.6==-o){h(4(){2()},i)}}9 6=0;4 r(){s()}9 k=5.q;4 m(){K{9 a=5.q;8(a!=k){8(a>5.R){6=o}p{6=0}r();k=a}}N(e){O y z(\'转屏时发生错误\');};h("m()",i)}m();3.A(\'B\',4(){;!4(){9 c=3.D(\'E\');c.F=\'j\';c.7.2=\'G\';3.H.I(c);8(g(l(3.u(\'j\'),\'2\'))!=g(3.f(\'d\')[0].7.2)){9 n=g(l(3.u(\'j\'),\'2\'))/g(3.f(\'d\')[0].7.2);3.f("d")[0].7.2=g(3.f(\'d\')[0].7.2)/n+"t"};4 l(a,b){8(a.w){x a.w[b]}p{x P(a,Q)[b]}}}()},!1);',54,54,'||fontSize|document|function|window|orientation|style|if|var||||html||getElementsByTagName|parseFloat|setTimeout|100|span1span|innerWidthTmp|getStyle|screenOrientationListener||90|else|innerWidth|screenOrientationEvent|hengshuping|px|getElementById|640|currentStyle|return|new|Error|addEventListener|DOMContentLoaded|180|createElement|span|id|1em|body|appendChild|documentElement|try|16|clientWidth|catch|throw|getComputedStyle|false|innerHeight'.split('|'),0,{}))
+</script>
+<style>
+*{ margin:0; padding:0;}
+body,html{ width:100%; height:100%;}
+#div2{ width:16em; height:100%; margin:0 auto; position:fixed; z-index:10; overflow:hidden; }
+#ul2{ position:absolute; left:0; height:100%;}
+#ul2 li{ width:16em; height:100%; float:left; list-style:none;}
+#ul2 li img{ width:100%; height:100%; float:left; list-style:none;}
+#ol1{ position:absolute; bottom:10px; margin:0 auto; left:50%; transform:translateX(-50%); -webkit-transform:translateX(-50%);}
+#ol1 li{ width:10px; height:10px; list-style:none; margin-right:5px; border:1px solid #b5b5b5; border-radius:50%; float:left;}
+#ol1 .active{ background:#fff; border:1px solid #fff;}
+</style>
+<script src="move.js"></script>
+<script>
+window.onload = function(){
+	var oDiv2 = document.getElementById('div2');
+	var oUl2 = document.getElementById('ul2');
+	var oOl = document.getElementById('ol1');
+	var aLi2 = oUl2.getElementsByTagName('li');
+	var aOlLi = oOl.getElementsByTagName('li');
+	var w = aLi2[0].offsetWidth;
+	
+	oUl2.style.width = aLi2.length * w + 'px';
+	
+	//onmousedown onmousemove onmouseup
+	//ontouchstart ontouchmove  ontouchend
+	
+	/*document.ontouchmove = function(ev){
+		ev.preventDefault();
+	};*/
+	
+	var downX2 = 0;
+	var downLeft2 = 0;
+	var iNow = 0;
+	var downTime = 0;
+	aOlLi[iNow].className = "active";
+	oUl2.ontouchstart = function(ev){
+		var touchs = ev.changedTouches[0];
+		downX2 = touchs.pageX;
+		downLeft2 = this.offsetLeft;
+		var bBtn = true;
+		
+		downTime = Date.now();
+		
+		oUl2.ontouchmove = function(ev){
+			var touchs = ev.changedTouches[0];
+			
+			if( this.offsetLeft >= 0 ){
+				
+				if(bBtn){
+					bBtn = false;
+					downX2 = touchs.pageX;
+				}
+				
+				this.style.left = (touchs.pageX - downX2)/10 + 'px';
+				
+			}
+			else if( this.offsetLeft <= oDiv2.offsetWidth - oUl2.offsetWidth ){
+				
+				if(bBtn){
+					bBtn = false;
+					downX2 = touchs.pageX;
+				}
+				
+				this.style.left = (touchs.pageX - downX2)/10 + ( oDiv2.offsetWidth - oUl2.offsetWidth ) + 'px';
+				
+			}
+			else{
+				this.style.left = touchs.pageX - downX2 + downLeft2 + 'px';
+			}
+			
+		};
+		
+		oUl2.ontouchend = function(ev){
+			
+			var touchs = ev.changedTouches[0];
+			
+			if( touchs.pageX < downX2 ){   //←
+				
+				if(iNow != aLi2.length-1){
+					if( downX2 - touchs.pageX > aLi2[0].offsetWidth/2 || (Date.now() - downTime < 300 && downX2 - touchs.pageX > 30 ) ){
+						iNow++;
+					}
+				}
+				
+				startMove( oUl2 , { left : - iNow * w } , 400 , 'easeOut' );
+				
+				
+				for(var i=0;i<aOlLi.length;i++){
+					aOlLi[i].className = "";
+				};
+				aOlLi[iNow].className = "active";
+			}
+			else{    //→
+			
+				if(iNow != 0){
+					if( touchs.pageX - downX2 > aLi2[0].offsetWidth/2 || (Date.now() - downTime < 300 && touchs.pageX - downX2 > 30 ) ){
+						iNow--;
+					}
+				}
+				
+				startMove( oUl2 , { left : - iNow * w } , 400 , 'easeOut' );
+				
+				for(var i=0;i<aOlLi.length;i++){
+					aOlLi[i].className = "";
+				};
+				aOlLi[iNow].className = "active";
+				
+			}
+			
+			this.ontouchmove = null;
+			this.ontouchend = null;
+		};
+		
+	};
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div2">
+	<ul id="ul2">
+    	<li><img src="img/1.jpg"></li>
+        <li><img src="img/2.jpg"></li>
+        <li><img src="img/3.jpg"></li>
+        <li><img src="img/4.jpg"></li>
+        <li><img src="img/5.jpg"></li>
+    </ul>
+    <ol id="ol1">
+    	<li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+    </ol>
+</div>
+</body>
+</html>

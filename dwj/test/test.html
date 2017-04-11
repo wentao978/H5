@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{ background:#000;}
+#c1{ background:#fff;}
+#div1{ width:400px; height:400px; background-color:#fff;}
+</style>
+<script>
+window.onload = function(){
+	var oC = document.getElementById('c1');
+	var oGC = oC.getContext('2d'); 
+	
+	/*
+	 *.fillText(文字,x,y);
+	 *.strokeText(文字,x,y);
+	 *.font = '60px impact'; 字体大小和字体(必须)
+	 *.textBaseline = 'top'; middle,bottom
+	 *.textAlign = 'start'; start,center,end
+	 *.measureText(文字).width 获取文字的宽
+	 *.shadowOffsetX = 10; 水平位置的阴影偏移量
+	 *.shadowOffsetY = 10; 垂直位置的阴影偏移量
+	 *.shadowColor = 'yellow'; 阴影的颜色
+	 *.shadowBlur = '5'; 阴影模糊值
+	*/
+	
+	oGC.font = '60px impact';
+	oGC.textBaseline = 'top';
+	/*oGC.textAlign = 'left';
+	oGC.fillText('稻草人',0,0);
+	*/
+	//文字水平垂直居中
+	oGC.strokeStyle = '#f90';
+	var w = oGC.measureText('稻草人').width;
+	oGC.shadowOffsetX = '10';
+	oGC.shadowOffsetY = '10';
+	oGC.shadowBlur = '5';
+	oGC.shadowColor = 'red'; //必须有颜色值，否则没有效果
+	oGC.strokeText('稻草人',(oC.width-w)/2,(oC.height-80)/2);
+	document.getElementById("div1").style.backgroundImage = "url("+oC.toDataURL()+")";
+	
+};
+</script>
+</head>
+<body>
+<!--canvas默认宽300，高150-->
+<canvas id="c1" width="400" height="400">您的浏览器不支持canvas！</canvas>
+<div id="div1"></div>
+</body>
+</html>

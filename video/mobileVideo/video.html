@@ -1,0 +1,807 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>移动端视频播放器</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+.gioneeVideoWrap{ position:relative; overflow:hidden; margin:0 auto;}
+.gioneeVideoWrap * { box-sizing:border-box; margin:0;}
+.contentVideoWrap{ position:absolute;}
+.videoContent{ position:relative; overflow:hidden; width:100%; height:100%;}
+.videoContent video{ position: relative; display: block; top: 0; left: 0; width: 100%; height: 100%; background: #000;}
+.poster{ position:absolute; overflow:hidden; z-index:4;}
+.poster img{ display:block;}
+.pauseWrap{ position:relative; z-index:8;}
+.pause{ position: absolute; z-index: 5; left: 0; right: 0; bottom: 0; top: 0; width: 76px; height: 50px; line-height: 50px; margin: auto!important; overflow: hidden; font-size: 0; text-align: center; background: rgba(23,23,23,.9); border-radius: 3px; cursor: pointer;}
+.pauseBtn{ position: absolute; display: block; width: 0; height: 0; left: 30px; top: 14px; margin: auto; overflow: hidden;vertical-align: middle; border: 20px solid transparent; border-width: 12px 21px; border-left-color: #fff;}
+.loading{ position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; top: 0; width: 30px; height: 30px;  margin: auto!important; }
+.controls{ position: absolute; display: table; z-index: 6; bottom: -40px;left: 0;width: 100%; height: 40px;  background-color: rgba(23,23,23,.9); -webkit-transform: translateZ(0); -webkit-transition: bottom .3s ease; transition: bottom .3s ease;}
+.ppbtn{ display: table-cell; width: 46px; height: 100%; vertical-align: top;}
+.ppbtn button{ box-sizing:border-box; margin:0; display: block; width: 100%; height: 100%; padding: 0; border: 0 none; background: none; text-align: center; font-size: 0;    cursor: pointer;}
+.ppbtn button span{ display: inline-block; width: 0; height: 0; position:relative; left:8px;vertical-align: middle; background: none; border: 15px solid transparent; border-width: 10px 15px; border-left-color: #fff; font-size: 0; color: transparent;}
+.ppbtn button .pausing{ width: 10px; height: 15px; border: 0 none; position:relative; left:-1px; border-left: 2px solid #fff;    border-right: 2px solid #fff;}
+.timebar{ position: relative; display: table-cell; height: 100%; padding: 0; vertical-align: top;}
+.timetotal{ position: relative; display: block; top: 18px; width: 100%; height: 4px; background: rgba(44,44,44,.8); cursor: pointer;}
+.timeloaded{position: absolute; left: 0; top: 1px; z-index: 1; background: rgba(255,255,255,.2); height:2px; display:block; max-width: 100%!important;}
+.timecurrent{ position: absolute; left: 0; top: 1px; z-index: 2; display: block; max-width: 100%!important; height: 2px; background: #FF9000;}
+.timehandler{ position: absolute; z-index: 3;  top:-7px; margin-left:0; display: block;width: 16px; height: 16px; overflow: hidden; background: #F3F5F7; cursor: pointer; border-radius:50%}
+.timepanel{position: absolute;right: 0; bottom: -18px; z-index: 2; font-size: 10px; color: #888; font-family: PingFangSC-Light,HelveticaNeue-Light,arial;}
+.timepanelcurrent{ color: #DEDEDF; float:left; font-size:10px; line-height:1;}
+.timepaneltotal{ float:left; color:#888; font-size:10px; line-height:1;}
+.fullbtn{ display: table-cell; width: 50px; height: 100%;}
+.fullbtn button{ position:relative; display: block; width: 100%;height: 100%; padding: 0; border: 0 none; background: none; text-align: center; font-size: 0; cursor: pointer;}
+.fullbtn button:before{content: ""; position: absolute; right: 17px; top: 11px; width: 4px; height: 4px; border-right: 2px solid #fff; border-top: 2px solid #fff; -webkit-box-sizing: content-box;  box-sizing: content-box;}
+.fullbtn button:after{ content: ""; position: absolute; top: 11px; right: 18px; width: 8px; height: 2px;    background-color: #fff; -webkit-transform: rotate(-45deg); -webkit-transform-origin: right center}
+.fullbtn button span:before{ content: ""; position: absolute; left: 17px; bottom: 14px; width: 4px; height: 4px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; -webkit-box-sizing: content-box; box-sizing: content-box;}
+.fullbtn button span:after{ content: ""; position: absolute; bottom: 14px; left: 18px;  width: 8px; height: 2px; background-color: #fff;     -webkit-transform: rotate(-45deg); -webkit-transform-origin: left center;}
+button,button:active{ outline:none; border:none; background:none;}
+</style>
+<script>
+window.onload = function(){
+	var oV = document.getElementsByTagName("video")[0];
+
+	oV.removeAttribute("controls");
+	var oParent = oV.parentNode.parentNode.parentNode;
+	console.log(oParent);
+	var oWrap = oV.parentNode.parentNode.parentNode;
+	var oContentWrap = oWrap.querySelector(".contentVideoWrap");
+	var oP = oWrap.querySelector(".poster");
+	var opImg = oWrap.querySelector(".poster>img");
+	var oC = oWrap.querySelector(".videoContent");
+	var oPauseWrap = oWrap.querySelector(".pauseWrap");
+	var oPauseBtn = oWrap.querySelector(".pauseBtn");
+	var oLoading = oWrap.querySelector(".loading");
+	var oTimeTotal = oWrap.querySelector(".timepaneltotal");
+	var oTimeWidthTotal = oWrap.querySelector(".timetotal");
+	var oTimeWidthCurrent = oWrap.querySelector(".timecurrent");
+	var oTimeCurrent = oWrap.querySelector(".timepanelcurrent");
+	var oTimeWidthCurrent = oWrap.querySelector(".timecurrent");
+	var oTimeLoaded = oWrap.querySelector(".timeloaded");
+	var oTimeHandler = oWrap.querySelector(".timehandler");
+	var oTimeBar = oWrap.querySelector(".timebar");
+	var oPpbtn = oWrap.querySelector(".ppbtn");
+	var oFullbtn = oWrap.querySelector(".fullbtn");
+	var oControls = oWrap.querySelector(".controls");
+	var w,h,s,W=oWrap.offsetWidth>640?640:oWrap.offsetWidth;
+	
+	var timeDrag = false;	
+	var loader = true;
+	var lastClick = 0;
+	var lastBuff = 0;
+	var timer = null;
+	var completeloaded = false;
+	
+	
+	w = oV.getAttribute("width");
+	h = oV.getAttribute("height");
+	s = h/w;
+	console.log(s);
+	
+	oWrap.style.width = W + "px";
+	oP.style.width = W + "px";
+	opImg.style.width = W + "px";
+	oContentWrap.style.width = W + "px";
+	oPauseWrap.style.width = W + "px";
+
+		
+	oWrap.style.height = Math.floor(W * s) + "px";
+	oContentWrap.style.height = Math.floor(W * s) + "px";			
+	oP.style.height = Math.floor(W * s) + "px";
+	opImg.style.height = Math.floor(W * s) + "px";			
+	oPauseWrap.style.height = Math.floor(W * s) + "px";
+	
+	oV.setAttribute("width","100%");
+	oV.setAttribute("height","100%");
+	
+	oLoading.style.display = "block";
+	
+	//var isPaused = true;
+	
+	oWrap.onclick = function(){
+		if(loader){
+			oV.setAttribute("preload","auto");
+			oV.setAttribute("autobuffer","true");	
+		};
+		loader = false;	
+	};
+	
+	oPauseBtn.onclick = function(){
+		lastClick = oV.currentTime;
+		oPauseWrap.style.display = "none";
+		oP.style.display = "none";
+		if(oV.paused){
+			oV.play();
+			oPpbtn.getElementsByTagName("span")[0].className = "pausing";
+		};
+		if(parseInt(getStyle(oControls,"bottom")) < 0){
+			startMove(oControls,{"bottom":"0"});	
+		};
+	};
+	
+	oV.onclick = function(){
+		lastClick = oV.currentTime;
+		if(parseInt(getStyle(oControls,"bottom")) < 0){
+			startMove(oControls,{"bottom":"0"});	
+		};
+	};
+	
+	oV.addEventListener('loadstart',function(){  //当浏览器开始寻找指定的音频/视频时，会发生 loadstart 事件。即当加载过程开始时。
+		oLoading.style.display = "block";
+		document.getElementById("test").innerHTML = "loadstart";
+	},!1);
+	
+	oV.addEventListener('durationchange',function(){  //当指定音频/视频的时长数据发生变化时，发生 durationchange 事件。
+		oLoading.style.display = "block";
+		document.getElementById("test").innerHTML = "durationchange";
+	},!1);
+	
+	oV.addEventListener('suspend',function(){  //浏览器非主动获取媒介数据，但没有加载完整个媒介资源；
+		//oLoading.style.display = "block";
+		document.getElementById("test").innerHTML = "suspend";
+	},!1);
+	
+	oV.addEventListener('loadedmetadata',function(){  //当指定的音频/视频的元数据已加载时，会发生 loadedmetadata 事件
+		oLoading.style.display = "block";
+		oTimeCurrent.innerHTML = timeFormat(0);
+		oTimeTotal.innerHTML = timeFormat(oV.duration);	
+		buff(oV,oTimeLoaded);	
+		document.getElementById("test").innerHTML = "loadedmetadata";
+		
+	},!1);
+	oV.addEventListener('loadeddata',function(){  //浏览器非主动获取媒介数据，但没有加载完整个媒介资源；
+		oLoading.style.display = "block";
+		document.getElementById("test").innerHTML = "loadeddata";
+		
+	},!1);
+	
+	
+	
+	oV.addEventListener('timeupdate',function(){  //事件在视频/音频（audio/video）当前的播放位置发生改变时触发。
+		oTimeCurrent.innerHTML = timeFormat(oV.currentTime);
+		oTimeWidthCurrent.style.width = 100 * (Math.ceil(oV.currentTime)/Math.ceil(oV.duration)) + "%"; 	
+		oTimeHandler.style.left = (oTimeWidthTotal.offsetWidth-16)/Math.ceil(oV.duration)*(Math.ceil(oV.currentTime)) + "px";		
+		
+		document.getElementById("test").innerHTML = "timeupdate";
+		//document.getElementById("test").innerHTML = oTimeHandler.offsetLeft;
+		
+		if(getEnd(oV) < oV.currentTime){
+			oLoading.style.display = "block";
+		}else{
+			oLoading.style.display = "none";	
+		};
+		if(getEnd(oV) < lastBuff){
+			getEnd(oV) = lastBuff;
+		};
+		
+		oTimeLoaded.style.width = 100 * Math.ceil(getEnd(oV)) / Math.ceil(oV.duration) + "%";
+		//document.getElementById("test").innerHTML = getEnd(oV);
+		lastBuff = getEnd(oV);
+		
+	},!1);
+	
+	
+	
+	oV.addEventListener('canplay',function(){  //当浏览器能够开始播放指定的音频/视频时，发生 canplay 事件。
+		
+		oLoading.style.display = "block";	
+		document.getElementById("test").innerHTML = "canplay";
+	},!1);
+	
+	
+	oV.addEventListener('canplaythrough',function(){  //当浏览器预计能够在不停下来进行缓冲的情况下持续播放指定的音频/视频时，会发生 canplaythrough 事件。
+		oLoading.style.display = "block";
+		completeloaded = true;
+		document.getElementById("test").innerHTML = "canplaythrough";
+	},!1);
+
+	oV.addEventListener('ended',function(){  //ended 属性返回音频/视频是否已结束
+		//$('.btnPlay').removeClass('paused');
+		oV.currentTime = 0;
+		oTimeCurrent.innerHTML = timeFormat(0);
+		oTimeHandler.style.left = 0 + "px";
+		oTimeWidthCurrent.style.width = 0 + "%";
+		oPpbtn.getElementsByTagName("span")[0].className = "";
+		oPauseWrap.style.display = "block";
+		oV.pause();
+		oLoading.style.display = "none";
+		startMove(oControls,{"bottom":"-40"});
+	},!1);
+	
+	oV.addEventListener('seeking',function(){  //seeking 属性返回用户目前是否在音频/视频中寻址
+		if(!completeloaded) { 
+			oLoading.style.display = "block";	
+		};
+		oLoading.style.display = "block";
+		document.getElementById("test").innerHTML = "seeking";
+	},!1);
+	
+	oV.addEventListener('progress',function(){   //onseeked 事件在用户重新定位视频/音频（audio/video）的播放位置后触发
+		if(getEnd(oV) < oV.currentTime){
+			oLoading.style.display = "block";
+		}else{
+			oLoading.style.display = "none";	
+		};
+		oTimeLoaded.style.width = 100 * Math.ceil(getEnd(oV)) / Math.ceil(oV.duration) + "%";
+		document.getElementById("test").innerHTML = "progress";
+	},!1);
+	
+	oV.addEventListener('waiting',function(){   // waiting 事件在视频由于需要缓冲下一帧而停止时触发。
+		oLoading.style.display = "block";	
+		document.getElementById("test").innerHTML = "waiting";
+	},!1);
+		
+	
+	timerOut();
+	function timerOut(){
+		timer = setInterval(function(){
+			if( (oV.currentTime - lastClick) >= 4 && !oV.paused){
+				startMove(oControls,{"bottom":"-40"});
+			};				
+		},4000);	
+	};
+	
+	oPpbtn.onclick = function(){
+		if(!oV.paused){
+			oV.pause();
+			oPpbtn.getElementsByTagName("span")[0].className = "";
+		}else{
+			oV.play();
+			oPpbtn.getElementsByTagName("span")[0].className = "pausing";
+		};	
+	};
+	
+	//点击全屏
+	oFullbtn.onclick = function(){
+		if(isFunction(oV.webkitEnterFullscreen)){
+			oV.webkitEnterFullscreen();
+		}else if(isFunction(oV.mozRequestFullScreen())){
+			oV.mozRequestFullScreen();	
+		}else if(isFunction(oV.requestFullScreen())){
+			oV.requestFullScreen();
+		};	
+	};
+	
+	//改版到这里…
+	oTimeHandler.ontouchstart = function(e){
+		clearInterval(timer);
+		timeDrag = true;
+		oV.pause();
+		oLoading.style.display = "block";
+		oTimeHandler.ontouchmove = function(e){
+			if(timeDrag){
+				var T = (e.changedTouches[0].pageX - oWrap.offsetLeft - 46) / (oTimeWidthTotal.offsetWidth - 16) * oV.duration;
+				if(T < 0){
+					T = 0;
+				};
+				if(T > oV.duration){
+					T = oV.duration;
+				};
+				oTimeCurrent.innerHTML = timeFormat(T);
+				uptimebar(e.changedTouches[0].pageX);
+			};
+			oV.pause();
+			oLoading.style.display = "block";
+		};
+		oTimeHandler.ontouchend = function(){
+			if(timeDrag){
+				timeDrag = false;
+				oV.play();
+				lastClick = oV.currentTime;
+				timerOut();
+				oPpbtn.getElementsByTagName("span")[0].className = "pausing";
+				oLoading.style.display = "block";
+			};
+			document.ontouchmove = null;
+			document.ontouchend = null;	
+		};
+		return false;
+	};
+	
+	function buff(video,oTimeLoaded){
+		try{
+			if(video.buffered.end(0)){
+				startBuffer(video,oTimeLoaded);
+			};
+		}catch(e){
+			buff(video,oTimeLoaded);									
+		};	
+	};
+	
+	function getEnd(video) {
+	  var end = 0;
+	  try{
+		end = video.buffered.end(0) || 0;
+		end = parseInt(end * 1000 + 1) / 1000;
+	  }catch(e){
+	  };
+	  return end;
+	};
+			
+	function uptimebar(e){
+		var maxduration = oV.duration;
+		var position = e - oWrap.offsetLeft - 46;
+		var percentage = 100 * position / (oTimeWidthTotal.offsetWidth - 16);
+		if(position >  oTimeWidthTotal.offsetWidth - 16){
+			position =  oTimeWidthTotal.offsetWidth - 16;
+		};
+		if(position < 0){
+			position = 0
+		};
+		if(percentage > 100) {
+			percentage = 100;
+		};
+		if(percentage < 0) {
+			percentage = 0;
+		};
+		oTimeHandler.style.left = position + "px";
+		oTimeWidthCurrent.style.width = percentage + "%";
+		oV.currentTime = maxduration * percentage / 100;	
+	};
+	
+	function startBuffer(video,oTimeLoaded){
+		var currentBuffer = getEnd(video);  //获取当前缓冲的时间
+		var maxduration = video.duration;
+		oTimeLoaded.style.width = 100 * Math.ceil(currentBuffer) / Math.ceil(maxduration) + "%";
+		if(currentBuffer < maxduration) {
+			setTimeout(function(){
+				startBuffer(video,oTimeLoaded);	
+			},500);
+		};
+	};
+	
+	function isFunction(fn){
+		return Object.prototype.toString.call(fn) === "[object Function]";
+	};	
+	
+	function timeFormat(seconds){
+		var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+		var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+		return m+":"+s;
+	};
+	
+	function getStyle(obj,name){
+		if(obj.currentStyle){
+			return obj.currentStyle[name];
+		}else{
+			return getComputedStyle(obj,false)[name];
+		};
+	};
+	
+	function startMove(obj,json,fnEnd){
+		clearInterval(obj.timer);
+		obj.timer = setInterval(function(){
+			var bStop = true;
+			for(var attr in json){
+			var cur = 0;
+			if(attr=="opacity"){
+				cur=Math.round(parseFloat(getStyle(obj,attr))*100);
+			}else{
+				cur = parseInt(getStyle(obj,attr));
+			};
+			var speed = (json[attr]-cur)/1;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(cur != json[attr]){
+				bStop = false;
+			};
+			if(attr=="opacity"){
+					obj.style.fliter="alpha(opacity:"+(cur+speed)+")";
+					obj.style.opacity=(cur+speed)/100;
+				}else{
+					obj.style[attr]=cur+speed+"px";
+				};
+			};
+			if(bStop){
+				clearInterval(obj.timer);
+				if(fnEnd) fnEnd();
+			};
+		},30);
+	};
+	
+};
+
+//==================================面向对象的写法===========================================
+
+function VideoObject(oV){
+	this.oV = oV;
+	this.oWrap = this.oV.parentNode.parentNode.parentNode;
+	this.oContentWrap = this.oWrap.querySelector(".contentVideoWrap");
+	this.oP = this.oWrap.querySelector(".poster");
+	this.opImg = this.oWrap.querySelector(".poster>img");
+	this.oC = this.oWrap.querySelector(".videoContent");
+	this.oPauseWrap = this.oWrap.querySelector(".pauseWrap");
+	this.oPauseBtn = this.oWrap.querySelector(".pauseBtn");
+	this.oLoading = this.oWrap.querySelector(".loading");
+	this.oTimeTotal = this.oWrap.querySelector(".timepaneltotal");
+	this.oTimeWidthTotal = this.oWrap.querySelector(".timetotal");
+	this.oTimeWidthCurrent = this.oWrap.querySelector(".timecurrent");
+	this.oTimeCurrent = this.oWrap.querySelector(".timepanelcurrent");
+	this.oTimeWidthCurrent = this.oWrap.querySelector(".timecurrent");
+	this.oTimeLoaded = this.oWrap.querySelector(".timeloaded");
+	this.oTimeHandler = this.oWrap.querySelector(".timehandler");
+	this.oTimeBar = this.oWrap.querySelector(".timebar");
+	this.oPpbtn = this.oWrap.querySelector(".ppbtn");
+	this.oFullbtn = this.oWrap.querySelector(".fullbtn");
+	this.oControls = this.oWrap.querySelector(".controls");
+	this.w = this.oV.getAttribute("width");
+	this.h = this.oV.getAttribute("height");
+	this.s = this.h/this.w;
+	this.W = this.oWrap.offsetWidth>640?640:this.oWrap.offsetWidth;
+	this.timeDrag = false;	
+	this.loader = true;
+	this.lastClick = 0;
+	this.lastBuff = 0;
+	this.timer = null;
+	this.completeloaded = false;
+};
+VideoObject.prototype.init = function(){
+	this.oWrap.style.width = this.W + "px";
+	this.oP.style.width = this.W + "px";
+	this.opImg.style.width = this.W + "px";
+	this.oContentWrap.style.width = this.W + "px";
+	this.oPauseWrap.style.width = this.W + "px";		
+	this.oWrap.style.height = Math.floor(this.W * this.s) + "px";
+	this.oContentWrap.style.height = Math.floor(this.W * this.s) + "px";			
+	this.oP.style.height = Math.floor(this.W * this.s) + "px";
+	this.opImg.style.height = Math.floor(this.W * this.s) + "px";			
+	this.oPauseWrap.style.height = Math.floor(this.W * this.s) + "px";	
+	this.oV.setAttribute("width","100%");
+	this.oV.setAttribute("height","100%");	
+	this.oLoading.style.display = "block";
+	this.start();
+	this.loaded();	
+	this.timerOut();
+};
+VideoObject.prototype.start = function(){
+	var This = this;
+	//外层div绑定点击事件，开始加载视频
+	this.oWrap.addEventListener("click",function(){
+		if(This.loader){
+			This.oV.setAttribute("preload","auto");
+			This.oV.setAttribute("autobuffer","true");	
+		};
+		This.loader = false;	
+	},!1);
+	
+	//点击暂停按钮，开始播放
+	this.oPauseBtn.addEventListener("click",function(){
+		This.lastClick = This.oV.currentTime;
+		This.oPauseWrap.style.display = "none";
+		This.oP.style.display = "none";
+		if(This.oV.paused){
+			This.oV.play();
+			This.oPpbtn.getElementsByTagName("span")[0].className = "pausing";
+		};
+		if(parseInt(getStyle(This.oControls,"bottom")) < 0){
+			startMove(This.oControls,{"bottom":"0"});	
+		};
+	},!1);
+	
+	//点击视频，若控制栏隐藏，则显示控制栏
+	this.oV.addEventListener("click",function(){
+		This.lastClick = This.oV.currentTime;
+		if(parseInt(getStyle(This.oControls,"bottom")) < 0){
+			startMove(This.oControls,{"bottom":"0"});	
+		};	
+	},!1);
+	
+	//点击控制栏的播放与暂停
+	this.oPpbtn.addEventListener("click",function(){
+		if(!This.oV.paused){
+			This.oV.pause();
+			This.oPpbtn.getElementsByTagName("span")[0].className = "";
+		}else{
+			This.oV.play();
+			This.oPpbtn.getElementsByTagName("span")[0].className = "pausing";
+		};	
+	},!1);
+	
+	//点击控制栏的全屏按钮
+	this.oFullbtn.addEventListener("click",function(){
+		if(isFunction(This.oV.webkitEnterFullscreen)){
+			This.oV.webkitEnterFullscreen();
+		}else if(isFunction(This.oV.mozRequestFullScreen())){
+			This.oV.mozRequestFullScreen();	
+		}else if(isFunction(This.oV.requestFullScreen())){
+			This.oV.requestFullScreen();
+		};		
+	},!1);
+	
+	
+};
+VideoObject.prototype.loaded = function(){
+	var This = this;
+	//当浏览器开始寻找指定的音频/视频时，会发生 loadstart 事件。即当加载过程开始时。
+	this.oV.addEventListener('loadstart',function(){  
+		This.oLoading.style.display = "block";
+	},!1);
+	
+	//当指定音频/视频的时长数据发生变化时，发生 durationchange 事件。
+	this.oV.addEventListener('durationchange',function(){  
+		This.oLoading.style.display = "block";
+	},!1);
+
+	//当指定的音频/视频的元数据已加载时，会发生 loadedmetadata 事件
+	this.oV.addEventListener('loadedmetadata',function(){  
+		This.oLoading.style.display = "block";
+		This.oTimeCurrent.innerHTML = timeFormat(0);
+		This.oTimeTotal.innerHTML = timeFormat(This.oV.duration);	
+		buff(This.oV,This.oTimeLoaded);			
+	},!1);
+	
+	//浏览器非主动获取媒介数据，但没有加载完整个媒介资源；
+	this.oV.addEventListener('loadeddata',function(){  
+		This.oLoading.style.display = "block";
+	},!1);
+	
+	//事件在视频/音频（audio/video）当前的播放位置发生改变时触发。
+	this.oV.addEventListener('timeupdate',function(){  
+		This.oTimeCurrent.innerHTML = timeFormat(this.oV.currentTime);
+		This.oTimeWidthCurrent.style.width = 100 * (Math.ceil(This.oV.currentTime)/Math.ceil(This.oV.duration)) + "%"; 	
+		This.oTimeHandler.style.left = (This.oTimeWidthTotal.offsetWidth-16)/Math.ceil(This.oV.duration)*(Math.ceil(This.oV.currentTime)) + "px";		
+		if(getEnd(This.oV) < This.oV.currentTime){
+			This.oLoading.style.display = "block";
+		}else{
+			This.oLoading.style.display = "none";	
+		};
+		if(getEnd(This.oV) < This.lastBuff){
+			getEnd(This.oV) = This.lastBuff;
+		};
+		This.oTimeLoaded.style.width = 100 * Math.ceil(getEnd(This.oV)) / Math.ceil(This.oV.duration) + "%";
+		This.lastBuff = getEnd(This.oV);
+	},!1);
+	
+	//当浏览器能够开始播放指定的音频/视频时，发生 canplay 事件。
+	this.oV.addEventListener('canplay',function(){  
+		This.oLoading.style.display = "block";	
+	},!1);
+	
+	//当浏览器预计能够在不停下来进行缓冲的情况下持续播放指定的音频/视频时，会发生 canplaythrough 事件。
+	this.oV.addEventListener('canplaythrough',function(){  
+		This.oLoading.style.display = "block";
+		This.completeloaded = true;
+	},!1);
+
+	//ended 属性返回音频/视频是否已结束
+	this.oV.addEventListener('ended',function(){  
+		This.oV.currentTime = 0;
+		This.oTimeCurrent.innerHTML = timeFormat(0);
+		This.oTimeHandler.style.left = 0 + "px";
+		This.oTimeWidthCurrent.style.width = 0 + "%";
+		This.oPpbtn.getElementsByTagName("span")[0].className = "";
+		This.oPauseWrap.style.display = "block";
+		This.oV.pause();
+		This.oLoading.style.display = "none";
+		startMove(This.oControls,{"bottom":"-40"});
+	},!1);
+	
+	//seeking 属性返回用户目前是否在音频/视频中寻址
+	this.oV.addEventListener('seeking',function(){  
+		if(!This.completeloaded) { 
+			This.oLoading.style.display = "block";	
+		};
+		This.oLoading.style.display = "block";
+	},!1);
+	
+	//onseeked 事件在用户重新定位视频/音频（audio/video）的播放位置后触发
+	this.oV.addEventListener('progress',function(){   
+		if(getEnd(This.oV) < This.oV.currentTime){
+			This.oLoading.style.display = "block";
+		}else{
+			This.oLoading.style.display = "none";	
+		};
+		This.oTimeLoaded.style.width = 100 * Math.ceil(getEnd(This.oV)) / Math.ceil(This.oV.duration) + "%";
+	},!1);
+	
+	// waiting 事件在视频由于需要缓冲下一帧而停止时触发。
+	this.oV.addEventListener('waiting',function(){   
+		This.oLoading.style.display = "block";	
+	},!1);
+		
+};
+
+VideoObject.prototype.timerOut = function(){
+	var This = this;
+	this.timer = setInterval(function(){
+		if((This.oV.currentTime - This.lastClick) >= 4 && !This.oV.paused){
+			startMove(This.oControls,{"bottom":"-40"});
+		};				
+	},4000);	
+};
+
+VideoObject.prototype.drag = function(){
+	var This = this;
+	this.oTimeHandler.ontouchstart = function(e){
+		clearInterval(This.timer);
+		This.timeDrag = true;
+		This.oV.pause();
+		This.oLoading.style.display = "block";
+		This.oTimeHandler.ontouchmove = function(e){
+			if(This.timeDrag){
+				var T = (e.changedTouches[0].pageX - This.oWrap.offsetLeft - 46) / (This.oTimeWidthTotal.offsetWidth - 16) * This.oV.duration;
+				if(T < 0){
+					T = 0;
+				};
+				if(T > This.oV.duration){
+					T = This.oV.duration;
+				};
+				This.oTimeCurrent.innerHTML = timeFormat(T);
+				This.uptimebar(e.changedTouches[0].pageX);
+			};
+			This.oV.pause();
+			This.oLoading.style.display = "block";
+		};
+		This.oTimeHandler.ontouchend = function(){
+			if(This.timeDrag){
+				This.timeDrag = false;
+				This.oV.play();
+				This.lastClick = This.oV.currentTime;
+				This.timerOut();
+				This.oPpbtn.getElementsByTagName("span")[0].className = "pausing";
+				This.oLoading.style.display = "block";
+			};
+			document.ontouchmove = null;
+			document.ontouchend = null;	
+		};
+		return false;
+	};	
+};
+
+VideoObject.prototype.upTimeBar = function(e){
+	var e = e ||　window.event;
+	var maxduration = this.oV.duration;
+	var position = e - this.oWrap.offsetLeft - 46;
+	var percentage = 100 * position / (this.oTimeWidthTotal.offsetWidth - 16);
+	if(position >  this.oTimeWidthTotal.offsetWidth - 16){
+		position =  this.oTimeWidthTotal.offsetWidth - 16;
+	};
+	if(position < 0){
+		position = 0;
+	};
+	if(percentage > 100) {
+		percentage = 100;
+	};
+	if(percentage < 0) {
+		percentage = 0;
+	};
+	this.oTimeHandler.style.left = position + "px";
+	this.oTimeWidthCurrent.style.width = percentage + "%";
+	this.oV.currentTime = maxduration * percentage / 100;	
+};
+
+function startBuffer(video,oTimeLoaded){
+	var currentBuffer = getEnd(video);
+	var maxduration = video.duration;
+	oTimeLoaded.style.width = 100 * Math.ceil(currentBuffer) / Math.ceil(maxduration) + "%";
+	if(currentBuffer < maxduration) {
+		setTimeout(function(){
+			startBuffer(video);	
+		},500);
+	};
+};
+
+function buff(video,oTimeLoaded){
+	try{
+		if(video.buffered.end(0)){
+			startBuffer(video,oTimeLoaded);
+		};
+	}catch(e){
+		buff(video,oTimeLoaded);									
+	};	
+};
+
+function getEnd(video) {
+  var end = 0;
+  try{
+	end = video.buffered.end(0) || 0;
+	end = parseInt(end * 1000 + 1) / 1000;
+  }catch(e){
+	  console.log("获取缓冲数据失败");
+  };
+  return end;
+};
+
+function isFunction(fn){
+	return Object.prototype.toString.call(fn) === "[object Function]";
+};	
+
+function timeFormat(seconds){
+	var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+	var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+	return m+":"+s;
+};
+
+function getStyle(obj,name){
+	if(obj.currentStyle){
+		return obj.currentStyle[name];
+	}else{
+		return getComputedStyle(obj,false)[name];
+	};
+};
+
+function startMove(obj,json,fnEnd){
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		var bStop = true;
+		for(var attr in json){
+		var cur = 0;
+		if(attr=="opacity"){
+			cur=Math.round(parseFloat(getStyle(obj,attr))*100);
+		}else{
+			cur = parseInt(getStyle(obj,attr));
+		};
+		var speed = (json[attr]-cur)/1;
+		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+		if(cur != json[attr]){
+			bStop = false;
+		};
+		if(attr=="opacity"){
+				obj.style.fliter="alpha(opacity:"+(cur+speed)+")";
+				obj.style.opacity=(cur+speed)/100;
+			}else{
+				obj.style[attr]=cur+speed+"px";
+			};
+		};
+		if(bStop){
+			clearInterval(obj.timer);
+			if(fnEnd) fnEnd();
+		};
+	},30);
+};
+
+//var v0 = new VideoObject(document.getElementByTagName("video")[0]);
+//v0.init();
+//var v1 = new VideoObject(document.getElementByTagName("video")[1]);
+//v1.init();
+</script>
+</head>
+<body>
+<div class="gioneeVideoWrap">
+	<div class="contentVideoWrap">
+    	<div class="videoContent">
+            <video id="v1" width="1024" height="576" x-webkit-airplay="true" webkit-playsinline="true" preload="none" poster="" src="http://d.gionee.com/nav/test1.mp4">
+                 <source src="http://d.gionee.com/nav/test1.mp4" type="video/mp4"/>
+            </video>
+        </div>
+    </div>
+    <div class="poster">
+    	<img src="22.png" >
+    </div>
+    <img src="loading_small.gif" class="loading">
+    <div class="pauseWrap">
+    	<div class="pause">
+    		<span class="pauseBtn"></span>
+	    </div>
+    </div>
+    <div class="controls">
+    	<div class="ppbtn">
+           <button type="button" title="播放/暂停">
+               <span class="">播放</span>
+           </button>  
+        </div>
+        <div class="timebar">
+        	<span class="timetotal">
+            	<span class="timeloaded"></span>
+                <span class="timecurrent"></span>
+                <span class="timehandler"></span>
+                <span class="timepanel">
+                	<span class="timepanelcurrent">00:00</span>
+                    <span style="float:left; position:relative; top:-1px;">/</span>
+                    <span class="timepaneltotal">00:00</span>
+                </span>
+            </span>
+        </div>
+        <div class="fullbtn">
+        	<button type="button" title="切换全屏 ">
+            	<span></span>
+            </button>
+        </div>
+    </div>
+</div>
+<div id="test"></div>
+
+</body>
+</html>

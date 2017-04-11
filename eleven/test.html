@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>双11抽奖</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+<div id="div1">
+
+</div>
+<script>
+window.localStorage.getItem("music") == null ?  window.localStorage.setItem("music",Math.floor(Math.random()*100)) : "";
+
+document.getElementById("div1").innerHTML = window.localStorage.getItem("music");
+
+</script>
+</body>
+</html>

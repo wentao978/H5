@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>双11</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script type="text/javascript" src="js/size.js"></script>
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/eleven.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/eleven.js"></script>
+</head>
+<body>
+<div id="content">
+    <div class="topDiv">
+        <img src="images/top.png" alt="双11顶图" class="img">
+    </div>
+    <div class="timeDiv pa tc">
+    	您今天还剩<span class="time">3</span>次摇奖机会！
+    </div>
+    <div class="tigerWrap pa">
+    	<ul class="pul pa">
+    		<li class="l1 pa t0">
+            	<dl class="pa l0 t0 dl">
+                	<dd><img src="images/p0.png" alt="音乐盒"></dd>
+                    <dd><img src="images/p1.png" alt="金立M6"></dd>
+                    <dd><img src="images/p2.png" alt="喜马拉雅耳机"></dd>
+                    <dd><img src="images/p3.png" alt="50元红包"></dd>
+                </dl>
+            </li>
+    		<li class="l2 pa t0">
+            	<dl class="pa l0 t0 dl">
+                	<dd><img src="images/p0.png" alt="音乐盒"></dd>
+                    <dd><img src="images/p2.png" alt="喜马拉雅耳机"></dd>
+                    <dd><img src="images/p1.png" alt="金立M6"></dd>
+                    <dd><img src="images/p3.png" alt="50元红包"></dd>
+                </dl>
+            </li>
+    		<li class="l3 pa t0">
+            	<dl class="pa l0 t0 dl">
+                	<dd><img src="images/p0.png" alt="音乐盒"></dd>
+                    <dd><img src="images/p3.png" alt="50元红包"></dd>
+                    <dd><img src="images/p2.png" alt="喜马拉雅耳机"></dd>
+                    <dd><img src="images/p1.png" alt="金立M6"></dd>
+                </dl>
+            </li>
+    	</ul>
+    	<img src="images/tiger.png" alt="" class="img pa">
+    </div>
+    <div class="tjinfo pa">
+    	推荐歌曲获得额外摇奖机会（最多可获3次）！
+    </div>
+    <div class="ganWrap pa">
+    	<img src="images/shang.png" alt="摇杆" class="img">
+    </div>
+    <div class="btn pa"></div>
+  	<div class="btnWrap pa tc">
+        <img src="images/rule.png" alt="活动规则" width="42.6%" class="rule">
+        <img src="images/record.png" alt="中奖纪录" width="42.6%" class="record">
+    </div>
+    <div class="notify pa"></div>
+    <div class="scrollDiv pa" id="scrollDiv">
+        <ul class="pa l0 t0"></ul>
+    </div>
+    <div class="thtext pa">
+        特别鸣谢<span style="font-size:0.7em;">（点击下载支持一下吧！）</span>
+    </div>
+    <div class="thIconWrap pa">
+        <a href="javascript:;" class="apk tc">
+            <img src="images/z1.png" alt="唯品会" class="img" data-href="http://m.appgionee.com/mobile/soft/detail?fr=gn_music&id=24832" data-id="1">
+            <span>唯品会</span>
+        </a>
+        <a href="javascript:;"  class="apk tc">
+            <img src="images/z2.png" alt="蘑菇街" class="img" data-href="http://m.appgionee.com/mobile/soft/detail?fr=gn_music&id=11777" data-id="2">
+            <span>蘑菇街</span>
+        </a>
+        <a href="javascript:;" class="apk tc">
+            <img src="images/z3.png" alt="美团"  class="img" data-href="http://m.appgionee.com/mobile/soft/detail?fr=gn_music&id=11154" data-id="3">
+            <span>美团</span>
+        </a> 
+        <a href="javascript:;"  class="apk tc">
+            <img src="images/z4.png" alt="网易新闻" class="img" data-href="http://m.appgionee.com/mobile/soft/detail?fr=gn_music&id=10561" data-id="4">
+            <span>网易新闻</span>
+        </a>
+        <a href="javascript:;" class="apk tc">
+            <img src="images/z5.png" alt="喜马拉雅"  class="img" data-href="http://h5.m.taobao.com/awp/core/detail.htm?id=534579649022" data-id="5">
+            <span>喜马拉雅</span>
+        </a>                
+    </div>
+</div>
+
+<!--活动规则内容不超出，为fixed弹出层-->
+<div id="activeRuleWrap">
+	<div id="activeRuleDiv" class="pf t0" style=" background:#e54b2c; border-radius:0.3rem; width:14rem; left:50%; top:50%; transform:translate3d(-50%,-50%,0)">
+        <div class="rules prizeWrap" style="display:none;">
+        	<img src="images/rule2.png" alt="活动规则" class="rule-pic" style="margin:1.2rem 34%;">
+            <!--<div>1、参与方式：点击转盘抽奖，每人只有一次抽</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;奖机会。</div>-->
+            <div>1、参与方式：</div>
+            <div>每人每天有3次摇奖机会，摇到3个同样的图案，即获得该奖品。摇奖机会用完之后，可以去荐歌榜推荐歌曲，每推荐一首歌，将额外获得一次摇奖机会，每天最多额外获得3次摇奖机会。</div>
+            <div>2、活动时间：</div>
+            <div>11月9日-11月13日</div>
+            <div>3、奖品设置：</div>
+            <div>一等奖1台：M6plus</div>
+            <div>二等奖5台：喜马拉雅降噪耳机</div>
+            <div>三等奖20名：现金红包50元</div>
+           <!-- <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一等奖2名：金立M6手机；</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二等奖20名：100元京东卡</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三等奖200名：30元移动充值卡</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;四等奖300名：10元京东卡</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;五等奖若干名：蚂蜂窝50元抵用券</div>-->
+            <!--<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阳光普照奖：随机获得100-500阅饼</div>
+            <div class="tr">（可前往掌阅书城兑换买书）</div>
+            <div style="margin-bottom:2em;">4、工作日上班之后，工作人员会邮寄奖品</div>-->
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button" style="margin:1.2rem 43.055% 1.6rem;">     
+        </div>
+    </div>
+</div>
+<!--红包为fixed层，填写中奖信息时上移弹框-->
+<div class="chongzhi prizeWrap pf l0 t0" style=" overflow:hidden;display:none; background:#fa5534;border-radius:0.3rem; width:11.85rem; left:50%; top:50%; transform:translate3d(-50%,-50%,0)">
+    <img src="images/p_1.png" alt="奖品" class="img prize" style="width:100%; margin:0 auto 0.6rem;">
+    <div class="hongbaoForm" style=" display:block; width:90%; margin:0 5%;">
+        <input type="tel" class="phoneNum" placeholder="请输入您的手机号码！" onKeyUp="value=value.replace(/\D/g,'')">
+        <input type="button" value="确定" class="phoneCon">
+    </div>
+    <div class="hasHongbao" style="display:none;">
+    	中奖号码为&nbsp;<span class="hasNum">18811181295</span>
+    </div>
+    <span class="inaddress tc" style=" width:78%; margin:0.6rem 11%; display:block">请确认您的手机号准确无误，一旦确认，无法修改！</span>
+    <span class="inaddress tc" style="display:none;">活动之后我们会与您联络哦~</span>
+    <!--<span class="inaddress tc" style=" position:relative; top:-1.4em;">欢迎联系我们的QQ群：142876462</span>-->
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button" style="margin:0.4rem 43.055% 0.6rem;">     
+</div>
+
+<!--重新写下实物的点击领取弹出层，fixed-->
+<div class="pf l0 t0" style=" z-index:10; overflow:hidden;display:none; background:#fa5534;border-radius:0.3rem; width:11.85rem; left:50%; top:50%; transform:translate3d(-50%,-50%,0)">
+    <img src="images/p_1.png" alt="奖品" class="img prize" style="width:100%; margin:0 auto 0.2rem;">
+    <div class="tc" style=" display:block;font-size: 0.66rem; margin: 0.4rem 15% 0.4rem; padding: 0.3em 0; color: #fde14e; width: 70%; display: inline-block; border: 1px solid #d5bd3e; border-radius: 0.4em;">
+        领取并填写收货地址
+    </div>
+    <span class="inaddress tc" style=" width:82%; color:#fff; margin:0.3rem 9%; display:block; font-size:0.52rem;">请留下您的联系方式，稍后会以邮寄的方式发送到您的手中~</span>
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button" style="margin:0.4rem 43.055% 0.6rem;">     
+</div>
+
+
+<!--填写收货地址,fixed-->
+<div class="shaddress prizeWrap inAddressWrap pf" style=" z-index:10; overflow:hidden;display:none; background:#fa5534;border-radius:0.3rem; width:12.6rem; left:50%; top:50%; transform:translate3d(-50%,-50%,0)">
+    <div class="tianxie tc" style=" color:#fcf292;">填写收货地址</div>
+    <form>
+        <div class="form-control">
+            <label>收货人：</label>
+            <input type="text" name="" id="" class="inText formPerson" placeholder="请输入收货人">
+        </div>
+        <div class="form-control">
+            <label>联系方式：</label>
+            <input type="tel" name="" id="" class="inText formNum" onKeyUp="value=value.replace(/\D/g,'')" placeholder="请输入联系方式">
+        </div>
+        <div class="form-control">
+            <label>详细地址：</label>
+            <input type="text" name="" id="" class="inText formAddress" placeholder="请输入详细地址">
+        </div>
+        <span class="warntext tc">请务必核对好您的收货地址和联系方式~</span>
+        <input type="button" value="确定" class="addressCon">
+    </form>    
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button" style="margin:0.4rem 43.055% 0.6rem;">  
+</div>
+
+<!--收货信息，fixed-->
+<div class="addressInfo prizeWrap shaddress shouhuoWrap pf" style="z-index:10; overflow:hidden;display:none; background:#fa5534;border-radius:0.3rem; width:14rem; left:50%; top:50%; transform:translate3d(-50%,-50%,0)">
+    <div class="shouhuo">收货信息</div>
+    <img src="images/p_1.png" alt="奖品" class="img prizeImg" style="width:90%; margin:0 5%;">
+    <div class="namePhone" style="margin-top:0.3rem;">
+        <span class="nameInfo">阿斯蒂芬</span>&nbsp; 
+        <span class="phoneInfo">18811181295</span>
+    </div>
+    <div class="otherInfo" style="margin-bottom:0.3rem;">
+        <span class="addrInfo">发送到发送到发大水发的说法大师傅阿道夫</span>
+    </div>
+    <input type="button" value="修改收货信息" class="xiugai">
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button">
+    
+    <p>活动规则</p>
+    <p>1、中国大陆地区（除去港澳台、西藏、新疆等快递邮寄不到的偏远地址）均可参加此活动；</p>
+    <p>2、此活动真实有效，并且不收取任何快递等费用； </p>
+    <p>3、最终解释权归金立音乐所有！</p>     
+</div>
+
+<!--点击出现弹窗-->
+<div id="divWrap">
+	<div id="popDiv" class="pf t0">
+    	<!--月饼券-->
+        <div class="yuebing prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button"  style="margin-top:0em;">
+        	<span class="textWrap pa">
+            	<span class="text1 dotted tl db"><a href="http://activity.mafengwo.cn/coupon.php?iId=4599" target="_self">点击领取</a></span>
+                <!--<span class="text2 dotted tl db">欢迎联系我们的QQ群：142876462</span>-->
+            </span>
+           <!--<span class="copyWrap" id="copy" data-clipboard-text="">
+            	点此复制
+            </span>-->
+        	<p>使用规则：</p>
+            <p>1. 优惠金额、适用范围及使用期限以优惠券上显示为准</p>
+            <p>2. 仅限在蚂蜂窝自由行APP商城频道购买产品可用（除旅游保险及蜂抢产品外）</p>
+            <p>3. 每张优惠券限用一次，每个订单限用一张。</p>
+            <p>4. 优惠券不能兑换成现金</p>
+            <p>5. 本活动解释权归蚂蜂窝所有</p>
+        </div>
+        <!--实物奖品-->
+        <div class="jdk prizeWrap" style="display:none;">
+        	<img src="" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，稍后会以邮寄的方式发送到您的手中~</span>
+            <!--<span class="inaddress tc" style=" position:relative; top:-1.4em;">欢迎联系我们的QQ群：142876462</span>-->
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+        <!--收货地址-->
+        <div class="shaddress prizeWrap inAddressWrap" style="display:none;">
+            <div class="tianxie">填写收货地址</div>
+            <form>
+                <div class="form-control">
+                    <label>收货人</label>
+                    <input type="text" name="" id="" class="inText formPerson" placeholder="请输入收货人">
+                </div>
+                <div class="form-control">
+                    <label>联系方式</label>
+                    <input type="tel" name="" id="" class="inText formNum" onKeyUp="value=value.replace(/\D/g,'')" placeholder="请输入联系方式">
+                </div>
+                <div class="form-control">
+                    <label>详细地址</label>
+                    <input type="text" name="" id="" class="inText formAddress" placeholder="请输入详细地址">
+                </div>
+                <input type="button" value="确定" class="addressCon">
+            </form>    
+            <img src="images/close-button.png" alt="关闭按钮" class="close-button">  
+        </div>
+        <!--收货信息-->
+        <div class="addressInfo prizeWrap shaddress shouhuoWrap" style="display:none;">
+            <div class="shouhuo">收货信息</div>
+            <img src="images/phone.png" alt="奖品" class="img prizeImg">
+            <div class="namePhone">
+                <span class="nameInfo"></span>&nbsp; 
+                <span class="phoneInfo"></span>
+            </div>
+            <div class="otherInfo">
+                <span class="addrInfo"></span>
+            </div>
+            <input type="button" value="修改收货信息" class="xiugai">
+            <img src="images/close-button.png" alt="关闭按钮" class="close-button">
+            
+            <p>活动规则</p>
+            <p>1、中国大陆地区（除去港澳台、西藏、新疆等快递邮寄不到的偏远地址）均可参加此活动；</p>
+            <p>2、此活动真实有效，并且不收取任何快递等费用； </p>
+            <p>3、最终解释权归金立音乐所有！</p>     
+        </div>
+    </div>
+</div>
+<div class="load"><img src="images/loading.gif" alt="" class="load-img"></div>
+<div id="tipsWrap">
+	<div class="success pf l0 t0"><img src="images/fail.png" alt="很遗憾，没中奖" class="img"></div>
+	<!--<div class="error pf l0 t0"><img src="images/over.png" alt="机会用完了" class="img"></div>-->
+</div>
+<div id="mask" class="pa l0 t0" style="display:none"></div>
+</body>
+</html>

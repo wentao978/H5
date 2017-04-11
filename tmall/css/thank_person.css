@@ -1,0 +1,10 @@
+.wrap_thanks_person{ width:100%; padding-bottom:177.5%; background:url(../images/thperson.jpg) no-repeat; background-size:cover; position:relative; overflow:hidden;}
+.methank{ width:26.7%;left:36.65%; position:absolute; top:4%;}
+.heart1{ width:58%; height:27.4648%; background:url(../images/heart1.png) no-repeat; background-size:cover; line-height:27.4648%; text-align:center; font-size:2.4rem; position:absolute; top:10.49295%; display:-webkit-box; -webkit-box-align:center; -webkit-box-pack:center;
+left:21%;word-break:break-all; word-wrap:break-word;}
+.thankme{ width:26.7%; position:absolute; top:40.2394%; left:36.65%;}
+.heart2{width:87%; height:43.48591%; background:url(../images/heart2.png) no-repeat; background-size:cover;text-align:center; font-size:2.4rem; position:absolute; top:45.8169%; display:-webkit-box; -webkit-box-align:center; -webkit-box-pack:center;
+left:6.5%; word-break:break-all; word-wrap:break-word; overflow:hidden;}
+.heart3{ position:absolute; width:60%; left:20%; top:28%; height:45%; overflow:hidden;}
+.heart3 ul{ width:95%; text-align:center; margin-left:5%; top:0%; position:absolute; vertical-align:middle;}
+.heart3 ul li{ }

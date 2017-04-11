@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>刮刮乐</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<style>
+#c1{ margin:0 auto; display:block;}
+</style>
+</head>
+<body style="-webkit-user-select: none; user-select: none; height:2000px;"> 
+<div id="div1"></div>
+<canvas id="c1"></canvas>
+<script type="text/javascript">     
+(function(){         
+	
+	var oW = document.documentElement.clientWidth - 16;
+	var oH = oW * 309/833;         
+	var oImg = new Image();
+	oImg.src = "1.png";
+	var jinzhi = 0;
+	
+	var oImg4 = new Image();
+	oImg4.src = "4.png";
+	var oImg5 = new Image();
+	oImg5.src = "5.png";
+	var oImg6 = new Image();
+	oImg6.src = "6.png";
+	var oImg7 = new Image();
+	oImg7.src = "7.png";
+	
+	oImg.onload = function(){
+		
+			
+		var img = new Image();   
+		img.src = '26.png';     
+		 
+		var oC = document.getElementById('c1');         
+		var oGc = oC.getContext('2d');   
+		
+		oC.width = oW;             
+		oC.height = oH; 
+		
+		img.onload = function(){
+		
+			var w = oW, h = oH;             
+			var offsetX = oC.offsetLeft, offsetY = oC.offsetTop;                          
+									 
+			oC.width=w;             
+			oC.height=h;             
+			oC.style.backgroundImage='url('+img.src+')'; 
+			oC.style.backgroundSize='cover';  
+			oGc.shadowBlur = '3';
+			oGc.shadowColor = 'white';
+			
+			oGc.drawImage(oImg,0,0,833,309,0,0,oW,oH);
+						  
+			oGc.globalCompositeOperation = 'destination-out';               
+			
+			
+			oC.onclick = function(){
+				var iNow = 0;	
+				var timer = null;			
+				timer = setInterval(function(){
+					if(iNow < 4){
+						
+						var oImger = new Image();						
+						oImger.src = (iNow+4)+".png";	
+						oImger.onload = function(){
+							oGc.drawImage(this,0,0,833,309,0,0,oW,oH);
+							console.log(this);
+							//oGc.clearRect(0,0,oW,oH);	
+							document.title = iNow;											
+							iNow++;	
+						};									
+					}else{
+						clearInterval(timer);
+						var w = oW, h = oH;             
+				                  
+												 
+						oC.width=w;             
+						oC.height=h;             
+						
+						console.log("timer");
+						oGc.drawImage(oImg,0,0,833,309,0,0,oW,oH);
+									  
+						oGc.globalCompositeOperation = 'destination-out'; 
+						
+					};
+				},80);
+			};
+			
+			
+			var times = 1;
+			var oT = false;		
+			oC.ontouchstart = function(ev){
+				
+				if(times){
+					var ev = ev.targetTouches[0];
+					oGc.beginPath();
+					oGc.moveTo(ev.clientX - oC.offsetLeft,ev.clientY - oC.offsetTop);
+					document.ontouchmove = function(ev){
+						var ev = ev.targetTouches[0];
+						oGc.lineTo(ev.clientX - oC.offsetLeft,ev.clientY - oC.offsetTop);
+						oGc.lineWidth = "15";
+						oGc.lineCap = 'round';
+						oGc.stroke();
+						
+						//阻止页面的滚动
+						jinzhi=0;						
+						if(jinzhi==0){
+							e.preventDefault();
+							e.stopPropagation();
+						};
+						
+					};
+					document.ontouchend = function(){
+						document.ontouchmove = null;
+						document.ontouchend = null;	
+						jinzhi = 1;
+						var data=oGc.getImageData(0,0,w,h).data;
+						for(var i=0,j=0;i<data.length;i+=4){
+							if(data[i] && data[i+1] && data[i+2] && data[i+3]){
+								j++;
+							}
+						}
+						if((j<=w*h*0.9)){
+							//j是剩余面积数
+							// 剩余90%面积提示信息
+							//$("#test").html("恭喜您，中奖啦！");
+							//$("#test").attr("data-rel","false");
+							//alert("刮开面积大于10%，次数减一");
+							oT = true;
+							if(oT){
+								//times--;
+							};
+							document.getElementById("div1").innerHTML = times;
+														
+							var iNow = 0;	
+							var timer1 = null;			
+							timer1 = setInterval(function(){
+								if(iNow < 4){
+									
+									var oImger = new Image();						
+									oImger.src = (iNow+4)+".png";	
+									oImger.onload = function(){
+										oGc.drawImage(this,0,0,833,309,0,0,oW,oH);
+										console.log(this);
+										//oGc.clearRect(0,0,oW,oH);	
+										document.title = iNow;											
+										iNow++;	
+									};									
+								}else{
+									clearInterval(timer1);
+									var w = oW, h = oH;             
+									
+									oC.width=w;             
+									oC.height=h;             
+								
+									oGc.drawImage(oImg,0,0,833,309,0,0,oW,oH);
+									document.getElementById("div1").innerHTML = iNow;			  
+									oGc.globalCompositeOperation = 'destination-out'; 
+								};
+							},80);	
+							
+						}
+						
+					};	
+				};
+				
+				return false;	
+			};
+			
+			document.getElementById("div1").innerHTML = times;
+				
+		};
+		
+	};
+	
+	
+		
+})();
+</script>
+</body>
+</html>

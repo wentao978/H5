@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>元宵节-猜灯谜</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script type="text/javascript" src="js/size.js"></script>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/yx.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/yx.js"></script>
+</head>
+<body>
+<!--<div id="loading">
+	<div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+    </div>
+    <div class="loadingText" id="loadingText">元宵灯谜活动正在努力加载中···</div>
+</div>-->
+<div class="baseDiv pr">
+	<img src="./images/ditu.jpg" alt="猜灯谜底图" class="img">
+</div>
+<div class="mimian pa di">
+	谜面:
+</div>
+<div class="question pa">
+	<span class="questionText">武大郎设宴</span>（打一成语）
+</div>
+<div class="answer pa">
+	<a href="javascript:;" class="ans aa" data-answer="1">A&nbsp;<span>高朋满座</span></a>
+    <a href="javascript:;" class="ans bb" data-answer="2">B&nbsp;<span>皂白不分</span></a>
+    <a href="javascript:;" class="ans cc" data-answer="3">C&nbsp;<span>半路出家</span></a>
+</div>
+<div class="changeDiv pa">
+	<img src="./images/button1.png" alt="换一换" class="img change-img">
+</div>
+<div class="myPrize pa">
+	<img src="./images/button2.png" alt="获奖结果" class="img">
+</div>
+<div class="info pa">
+	<p class="title">活动详情</p>
+    <p>1、奖品将从猜对灯谜的用户中抽取</p>
+    <p>2、奖品将在15个工作日内快递到您所填写的地址中</p>
+</div>
+
+<!--点击出现弹窗-->
+<div id="divWrap">
+	<div id="popDiv" class="pf t0">
+        <!--100京东卡一个-->
+        <div class="jdk prizeWrap" style="display:none;">
+        	<img src="images/12.png" alt="奖品" class="img prize">
+            <span class="get tc">领取并填写收货地址</span>
+            <span class="inaddress tc">请留下你的联系方式，3月15日之后我们会用邮寄的形式送到你手中~</span>
+       	    <img src="images/close-button.png" alt="关闭按钮" class="close-button">     
+        </div>
+    </div>
+</div>
+<div class="load"><img src="images/loading.gif" alt="" class="load-img"></div>
+<!--收货信息-->
+<div class="addressInfo prizeWrap pa l0 t0 shaddress" style="display:none;">
+    <div class="shouhuo">收货信息</div>
+    <img src="images/12.png" alt="奖品" class="img prizeImg">
+    <div class="namePhone">
+        <span class="nameInfo"></span>&nbsp; 
+        <span class="phoneInfo"></span>
+    </div>
+    <div class="otherInfo">
+        <span class="addrInfo"></span>
+    </div>
+    <input type="button" value="修改收货信息" class="xiugai">
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button">
+    <div class="jieshao">
+    	*蓝星漫APP-运用神奇的占星学，创新的融合了生活百科、运势占卜、咨询和兴趣圈子于一体，不愧为占星界的蓝胖子。现在下载蓝星漫APP，免费预测你的2016运势，还有水晶礼品可以拿~
+    </div>
+    <p>活动规则</p>
+    <p>1、中国大陆地区（除去港澳台、西藏、新疆等快递邮寄不到的偏远地址）均可参加此活动；</p>
+    <p>2、此活动真实有效，并且不收取任何快递等费用； </p>
+    <p>3、最终解释权归金立锁屏所有！</p>     
+</div>
+ <!--收货地址-->
+<div class="shaddress prizeWrap pa l0 t0" style="display:none;">
+    <div class="tianxie">填写收货地址</div>
+    <form>
+        <div class="form-control">
+            <label>收货人</label>
+            <input type="text" name="" id="" class="inText formPerson" placeholder="请输入收货人">
+        </div>
+        <div class="form-control">
+            <label>联系方式</label>
+            <input type="tel" name="" id="" class="inText formNum" placeholder="请输入联系方式">
+        </div>
+        <div class="form-control">
+            <label>详细地址</label>
+            <input type="text" name="" id="" class="inText formAddress" placeholder="请输入详细地址">
+        </div>
+        <input type="button" value="确定" class="addressCon">
+    </form>    
+    <img src="images/close-button.png" alt="关闭按钮" class="close-button">  
+</div>
+<div id="tipsWrap">
+	<div class="success pf l0 t0"><img src="images/tip1.png" alt="答对了" class="img"></div>
+	<div class="error pf l0 t0"><img src="images/tip2.png" alt="答错了" class="img"></div>
+</div>
+<div id="mask" class="pa l0 t0" style="display:none"></div>
+</body>
+</html>
